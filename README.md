@@ -513,7 +513,7 @@ Có nhiều cách để sắp xếp nội dung của một dự án UE4. Với c
 
 Nguyên nhân theo cấu trúc này được liệt kê theo hạng mục phụ phía dưới đây.
 
-### Sections
+### Các Hạng Mục 
 
 > 2.1 [Tên Thư Mục](#structure-folder-names)
 >
@@ -692,3 +692,20 @@ Thư mục `MaterialLibrary` không cần chỉ chứa mỗi vật liệu. Các 
 
 Mọi kiểu thử nghiệm hay vật liệu đang debug lưu tại `MaterialLibrary/Debug`. Điều này giúp loại bỏ vật liệu hỏng, thử nghiệm khỏi quá trình shipping và cũng cách ly khỏi tài nguyên đi vào sản xuất hay có những tham chiếu gẫy lỗi. 
 
+<a name="2.9"></a>
+<a name="structure-no-empty-folders"></a>
+### 2.9 Không Để Thư Mục Rỗng 
+
+Đơn giản là không nên để bất cứ thư mục rỗng nào. Nó tạo rác trong Content Browser.
+
+Nếu bạn tìm thấy trong Content Browser có một thư mục rỗng mà không xóa được, bạn nên thử: 
+1. Đảm bảo rằng đang dùng Source Control.
+1. Cho chạy ngay Fix Up Redirectors. 
+1. Truy cập tới thư mục trên đĩa cứng và xóa tài nguyên bên trong. 
+1. Đóng editor.
+1. Đảm bảo là trạng thái source control đang sync (Ví dụ, nếu có dùng Perforce, nó đang chạy Reconcile Offline Work trên thư mục nội dung).
+1. Mở editor. Kiểm tra là mọi thứ vẫn làm việc được. Nếu không thì quay lại xem cái gì gây ra nguyên nhân không hoạt động. 
+1. Đảm bảo thư mục đã hoàn toàn bị xóa. 
+1. Ghi nhận thay đổi - Submit lên source control.
+
+**[⬆ Back to Top](#table-of-contents)**
