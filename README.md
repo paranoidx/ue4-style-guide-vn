@@ -1215,7 +1215,7 @@ Ví dụ tồi: phần top của node cố gắng sắp xếp align theo đỉnh
 ![Tồi Tệ](../img/bp-graphs-align-wires-bad.png "Dây Rối Rắm")
 
 Hoặc hiện thân của kiểu khủng khiếp nhùng nhằng hơn
-![Lùng Bùng Spaghetti](../img/bp-graphs-wire-spaghetti.jpg "Spaghetti")
+![Lùng Bùng Spaghetti](..raw/master/img/bp-graphs-wire-spaghetti.jpg "Spaghetti")
 
 Kiểu Ví Dụ Chấp Nhận Được: một vài node cho dù làm kiểu gì cũng không thể sắp xếp align được. Trong trường hợp này giảm thiệu sự rối rắm của dây tối thiểu là ổn.
 ![Chấp Nhận Được](../img/bp-graphs-align-wires-acceptable.png "Tạm Được")
