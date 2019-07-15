@@ -16,7 +16,7 @@ Allar có thiết kế một plugin giúp tự động kiểm soát các tài ng
 
 ## Thảo Luận Thêm Về Style Guide Này
 
-Gamemakin LLC có một kênh Discord tại http://discord.gamemak.in với kênh #linter nếu như các bạn muốn thảo luận về mọi thứ liên quan style guid hay plugin Linter. 
+Gamemakin LLC có một kênh Discord tại http://discord.gamemak.in với kênh #linter nếu như các bạn muốn thảo luận về mọi thứ liên quan style guide hay plugin Linter. 
 
 ## Liên Kết Tới Tài Liệu Của Allar Theo Đề Mục
 
@@ -724,7 +724,7 @@ Mục này sẽ tập trung vào các class Blueprint. Nếu có thể, hãy the
 
 > 3.3 [Functions / Hàm](#bp-functions)
 
-> 3.4 [Graphs](#bp-graphs)
+> 3.4 [Graphs / Biểu Đồ Blueprint](#bp-graphs)
 
 <a name="3.1"></a>
 <a name="bp-compiling"></a>
@@ -1092,3 +1092,162 @@ Ví dụ bèo:
 * `Dead` - Chết chưa ? sẽ chết ? 
 * `Visibility` - Có hiển thị không ? để hiển thị ? một kiểu tên đặt ra với điều kiện khá bay bổng.
 
+<a name="3.3.1.4"></a>
+<a name="bp-funcs-naming-eventhandlers"></a>
+#### 3.3.1.4 Các Kiểu Sự Kiện Event Handlers Và Dispatchers Nên Bắt Đầu Với `On` 
+
+Hàm nào khiển hay dispatches một sự kiện nên bắt đầu với `On` và tiếp theo là loạt động từ, [đặt tên là động từ](#bp-funcs-naming-verbs). Động từ có thể để ở cuối tuy nhiên nếu thì quá khứ đọc dễ hiểu hơn thì dùng. 
+
+[Collocations - cụm từ thường đi chung với nhau](https://oxford.edu.vn/goc-tieng-anh/hoc-tieng-anh-cung-oxford/tong-hop-mot-so-collocations-thong-dung-nhat-1417.html) theo từ `On` là một ngoại lệ về đặt tên theo động từ.
+
+[Collocations giải nghĩa theo từ điển Anh Quốc](http://dictionary.cambridge.org/us/grammar/british-grammar/about-words-clauses-and-sentences/collocation)
+
+`Handle` là không dùng. Kiểu của 'Unreal' là dùng `On` thay vì `Handle` như các nền tảng khác.
+
+
+Ví dụ Good:
+
+* `OnDeath` - collocation thông dụng trong game
+* `OnPickup`
+* `OnReceiveMessage`
+* `OnMessageRecieved`
+* `OnTargetChanged`
+* `OnClick`
+* `OnLeave`
+
+Ví dụ bèo:
+
+* `OnData`
+* `OnTarget`
+* `HandleMessage`
+* `HandleDeath`
+
+<a name="3.3.1.5"></a>
+<a name="bp-funcs-naming-rpcs"></a>
+#### 3.3.1.5 RPC Remote Procedure Calls Nên Dùng Prefixed Có Mục Tiêu 
+
+Mỗi khi RPC được tạo, nên prefixed với `Server` hay `Client` hay `Multicast`. Không có ngoại lệ.
+
+Sau prefix, theo các qui luật đặt tên hàm.
+
+After the prefix, follow all other rules regarding function naming.
+
+Ví dụ Tốt:
+
+* `ServerFireWeapon`
+* `ClientNotifyDeath`
+* `MulticastSpawnTracerEffect`
+
+Ví dụ bèo:
+
+* `FireWeapon` - Không hiểu kích hoạt RPC từ đâu 
+* `ServerClientBroadcast` - khó hiểu
+* `AllNotifyDeath` - Sử dụng `Multicast`, **Không Bao Giờ** `All`.
+* `ClientWeapon` - không dùng động từ, khó hiểu
+
+
+<a name="3.3.2"></a>
+<a name="bp-funcs-return"></a>
+#### 3.3.2 Tất Cả Hàm Functions Phải Có Node Trả Về (Return)
+
+Điều này không có ngoại lệ, mọi function phải có node được gắn return.
+
+Return nodes dứt khoát rõ nghĩa rằng hàm đã thực thi xong. Trong cái thế giới nơi Blueprints có nhiều node `Sequence`, `ForLoopWithBreak` và backward reroute node, một luồng (flow) execution phải dễ hiểu, dễ duy trì, dễ debug.
+
+Trình biên dịch Blueprint có thể theo luồng execution và báo nếu có nhánh nào trong code hỏng hóc unhandled được trả về nếu như có node return.
+
+Trong trường hợp lập trình viên thêm node Sequence hay thêm thực thi vào sau khi vòng lặp for hoàn tất nhưng vòng lặp có thể trả về sớm hơn, kiểu này sẽ tạo ra lỗi. Blueprint sẽ thông báo qua trình biên dịch về việc này.
+
+<a name="3.3.3"></a>
+<a name="bp-graphs-funcs-node-limit"></a>
+#### 3.3.3 Không Có Hàm Nào Nên Có Hơn 50 Nodes
+
+Đơn giản hiểu như chính nó, không hơn 50 node trong một hàm. Nếu số lượng node nhiều hơn nên chia nhỏ thành các hàm nhỏ để dễ đọc và dễ bảo quản.
+
+Những node sau sẽ không tính vì bản thân nó dễ hiểu để không làm tăng tính phức tạp của hàm:
+
+* Comment
+* Route
+* Cast
+* Getting a Variable
+* Breaking a Struct
+* Function Entry
+* Self
+
+<a name="3.3.4"></a>
+<a name="bp-graphs-funcs-description"></a>
+#### 3.3.4 Các Hàm Functions Phải Có Chú Giải 
+
+Qui luật này ứng dụng trên mọi blueprint từ marketplace hay các loại giao dịch public để ai đó có thể dễ hiểu API Blueprint đó.
+
+Tạo chú giải lên mọi hàm có dạng public hay được truy cập dạng Public.
+
+<a name="3.3.5"></a>
+<a name="bp-graphs-funcs-plugin-category"></a>
+#### 3.3.5 Mọi Dạng Custom Static Plugin `BlueprintCallable` Kiểu Hàm Functions Phải Phân Loại Theo Tên Plugin
+
+Nếu như dự án của bạn có bao gồm plugin định nghĩa kiểu hàm `static` `BlueprintCallable`, nó phải được sắp xếp theo phân loại tên plugin.
+
+Lấy ví dụ, `Zed Camera Interface` hoặc `Zed Camera Interface | Image Capturing`.
+
+<a name="3.4"></a>
+<a name="bp-graphs"></a>
+### 3.4 Biểu Đồ Blueprint  
+
+Phần này mô tả mọi thứ ứng dụng tất cả vào biểu đồ Blueprint.
+
+<a name="3.4.1"></a>
+<a name="bp-graphs-spaghetti"></a>
+#### 3.4.1 Không Có Quẫy Tưng Bừng Nhầy Nhụa / Spaghetti 
+
+Dây nhợ phải rõ ràng có đầu và đuôi. Không chơi kiểu dây nhợ lùng bùng để thể hiện biểu đồ. Rất nhiều phần sau đây đề cập đến việc giảm dư thừa của mấy kiểu lằng nhằng lùng bùng dây nhợ.
+
+<a name="3.4.2"></a>
+<a name="bp-graphs-align-wires"></a>
+#### 3.4.2 Sắp Xếp Align Dây Chứ Không Phải Nodes
+
+Luôn sắp xếp theo dạng dây, không phải dạng node. Không thể điều khiển được kích thước và vị trí pin của node, nhưng hoàn toàn có thể điều khiển vị trí node nên điều đó cũng chỉnh được dây. Dây kéo thẳng cho thấy rõ ràng của luồng xử lý. Dây lùng bùng chả hiểu gì. Dùng hotkey: Q để làm thằng dây khi một node được chọn và control vào một node làm vật chủ align.
+
+Đây là ví dụ Good: Cái phần đầu của node được sắp xếp thẳng hàng theo dây trắng luồng execution 
+![Sắp Xếp Theo Dây Execution](../img/bp-graphs-align-wires-good.png "Sắp Xếp Theo Dây Execution")
+
+Ví dụ tồi: phần top của node cố gắng sắp xếp align theo đỉnh node gây ra dây luồng exec bị dùng dằng (node ADD Array so với Branch) 
+![Tồi Tệ](../img/bp-graphs-align-wires-bad.png "Dây Rối Rắm")
+
+Hoặc hiện thân của kiểu khủng khiếp nhùng nhằng hơn
+![Lùng Bùng Spaghetti](../img/bp-graphs-wire-spaghetti.jpg "Spaghetti")
+
+Kiểu Ví Dụ Chấp Nhận Được: một vài node cho dù làm kiểu gì cũng không thể sắp xếp align được. Trong trường hợp này giảm thiệu sự rối rắm của dây tối thiểu là ổn.
+![Chấp Nhận Được](../img/bp-graphs-align-wires-acceptable.png "Tạm Được")
+
+Kiểu Của Vũ Phạm Rainstorm Film trong game bắn máy bay: 
+[Sắp Xếp Theo Dây Execution Và Flow](../img/bp-graphs-acceptance-node-vupham-rainstorm-film.JPG "Tạm Được")
+
+
+<a name="3.4.3"></a>
+<a name="bp-graphs-exec-first-class"></a>
+#### 3.4.3 Dây Trắng Phân Luồng Là Tối Quan Trọng
+
+Luôn chọn để sắp xếp thẳng hàng dây trắng phân luồng execution sau đ1o mới tới ưu tiên làm thẳng dây dữ liệu.
+
+<a name="3.4.4"></a>
+<a name="bp-graphs-block-comments"></a>
+#### 3.4.4 Biểu Đồ Graphs Nên Được Comment Hợp Lý
+
+Một khối các node nên được comment mô tả về chức năng. Cũng như mỗi tên hàm nên được đặt tên dễ hiểu rõ ràng để mỗi node đều dễ đọc và có ý nghĩa, nhóm các node hợp tác để thực hiện một chức năng phải được đóng khối và có comment mô tả chức năng. Nếu một hàm liên kết bởi nhóm số ít các node và quá dễ hiểu để phục vụ một mục đích hiển hiện thì có thể là ngoại lệ.
+
+<a name="3.4.5"></a>
+<a name="bp-graphs-cast-error-handling"></a>
+#### 3.4.5 Biểu Đồ Nên Có Xử Lý Casting Error Nếu Được
+
+Nếu hàm hay sự kiện luôn nghĩ rằng việc cast luôn thành công, thì nên chuẩn bị cho việc nhận báo cáo của bất thành trong trường hợp cast fail. Điều này giúp người khác hiểu rằng cái gì đó đã lỗi. Một hàm cũng nên nhẹ nhàng phục hồi lại cast nếu lỡ fail trong trường hợp tham chiếu đã được cast từng fail.
+
+Điều này không có nghĩa là cái node cast nào cũng phải có xử lý fail. (Thực tế thì việc Exception Handling rất quan trọng, mặc dù rất nhiều designer dùng Blueprint trên thế giới yêu cầu Epic thêm vào trong Blueprint nhưng đến nay Epic vẫn chưa đưa vào.) Trong nhiều trường hợp các kiểu như collision, thì luồng execution tự động ngắt khi fail một cách im lặng.
+
+<a name="3.4.6"></a>
+<a name="bp-graphs-dangling-nodes"></a>
+#### 3.4.6 Biểu Đồ Không Nên Có Kiểu Lủng Lẳng / Không Dính Dây / Node Chết
+
+Mọi node trong biểu đồ Blueprint phải có mục đích. Không nên để các node không mục đích, không thực thi và lũng lẳng.
+
+**[⬆ Trở Về Mục Lục](#table-of-contents)**
