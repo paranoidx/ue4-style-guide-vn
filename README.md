@@ -1221,7 +1221,7 @@ Kiểu Ví Dụ Chấp Nhận Được: một vài node cho dù làm kiểu gì 
 ![Chấp Nhận Được](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-align-wires-acceptable.png "Tạm Được")
 
 Kiểu Của Vũ Phạm Rainstorm Film trong game bắn máy bay: 
-[Sắp Xếp Theo Dây Execution Và Flow](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-acceptance-node-vupham-rainstorm-film.JPG "Tạm Được")
+![Sắp Xếp Theo Dây Execution Và Flow](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-acceptance-node-vupham-rainstorm-film.JPG "Tạm Được")
 
 
 <a name="3.4.3"></a>
