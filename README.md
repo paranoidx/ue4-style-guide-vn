@@ -9,8 +9,10 @@ Theo nguyên bản Allar cho biết dựa theo rất nhiều trên [Airbnb Javas
 
 Epic Games cũng có một bộ tiêu chuẩn dành cho coding C++, tham khảo thêm về [codebase ở đây](https://docs.unrealengine.com/en-US/Programming/Development/CodingStandard/index.html). 
 
+Hiểu về cách định dạng văn bản của file README.MD theo GitHub nên tham khảo tài liệu của GitHub về [GitHub formmating ở đây](https://help.github.com/en/enterprise/2.17/user/articles/basic-writing-and-formatting-syntax)
+
 ## Unreal Engine 4 Linter Plugin
-Allar có thiết kế một plugin giúp tự động kiểm soát các tài nguyên có trong project Unreal Engine 4 theo style guide, tuy nhiên hiện nay đã không còn hoạt động và không còn cập nhật với các bảng Unreal Engine mới, xem thêm tại market [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter).
+Allar có thiết kế một plugin giúp tự động kiểm soát các tài nguyên (asset) có trong project Unreal Engine 4 theo style guide, tuy nhiên hiện nay đã không còn hoạt động và không còn cập nhật với các bảng Unreal Engine mới, xem thêm tại market [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter).
 
 ## Thảo Luận Thêm Về Style Guide Này
 
@@ -44,7 +46,7 @@ Với tư liệu gốc thì reposity của Allar không cho phép tạo thêm nh
 Từ "map" thông thường được chỉ đến như hiểu là "một màn chơi" và có thể sử dụng tùy theo ngữ cảnh. Để hiểu rõ hơn về lịch sử thuật ngữ màn chơi tham khảo thêm qua [Wikipedia ở đây](https://en.wikipedia.org/wiki/Level_(video_gaming).
 
 <a name="terms-cases"></a>
-##### Nhận Biết Chữ Hoa
+##### Cách Nhận Biết Chữ Hoa
 
 Có nhiều cách thể hiện đặt tên khi lập trình hay làm việc với BluePrint. Đây là một số cách đặt tên có chữ hoa:
 
@@ -94,27 +96,27 @@ Style guide nên được cập nhật liên tục và cũng nên được đổ
 
 >#### "Arguments over style are pointless. There should be a style guide, and you should follow it."
 >[_Rebecca Murphey_](https://rmurphey.com)
-
+>
 >Tranh cãi cách viết code là vô nghĩa. Chỉ cần có một style guide và nên làm theo nó.
 
 >#### "Part of being a good steward to a successful project is realizing that writing code for yourself is a Bad Idea™. If thousands of people are using your code, then write your code for maximum clarity, not your personal preference of how to get clever within the spec."
 >[_Idan Gazit_](https://twitter.com/idangazit)
-
+>
 >Cách để một dự án thành công là không tôn sùng việc viết code theo chủ nghĩa cá nhân. Nếu như code của bạn được sử dụng bởi người khác, thì viết code cần phải rõ ràng, không chỉ để tham khảo cá nhân hay làm cho mọi thứ ghê ghớm lên.
 
 <a name="0.2"></a>
-### 0.2 Mọi cấu trúc, tài nguyên, và code trong UE4 cần được thống nhất như một người viết, không cần biết bao nhiêu người cống hiến
+### 0.2 Mọi cấu trúc, tài nguyên (asset), và code trong UE4 cần được thống nhất như một người viết, không cần biết bao nhiêu người cống hiến
 
 Chuyển từ một dự án này sang cái khác cần sự dễ dàng, không phải tạo ra việt đào tạo lại về style và cấu trúc. Thoải mái với một style guide đồng nhất sẽ tránh việc tự đoán hay mù mờ.
 
 Nó cũng giúp tăng năng suất làm việc và duy trì năng suất, chỉ cần đi theo các chỉ thị nhiệm vụ. Đây là một style guide được thực tiễn hóa tốt nhất, theo style guide này sẽ giúp tối thiểu hóa khó khăn khi giải quyết vấn đề.
 
 <a name="0.3"></a>
-### 0.3 Đừng để bạn bè tạo ra các style tồi 
+### 0.3 Đừng để đồng đội tạo ra các style tồi 
 
-Cố gắn điều chỉnh những ai đang không theo style guide này hoặc đang làm việc mà không có style nào. 
+Cố gắng điều chỉnh những ai đang không theo style guide này hoặc đang làm việc mà không có style nào. 
 
-Khi làm việc trong một team hay đang thảo luận ở discord [Unreal Slackers](http://join.unrealslackers.org/), sẽ dễ dàng nhận được giúp đỡ hay giúp ai đó khi mọi thứ đồng nhất. Không ai muốn giúp một phiên bản Blueprint nhầy nhụa hay phải xử lý tài nguyên với những định danh khó hiểu. 
+Khi làm việc trong một team hay đang thảo luận ở discord [Unreal Slackers](http://join.unrealslackers.org/), sẽ dễ dàng nhận được giúp đỡ hay giúp ai đó khi mọi thứ đồng nhất. Không ai muốn giúp một phiên bản Blueprint nhầy nhụa hay phải xử lý tài nguyên (asset) với những định danh khó hiểu. 
 
 Điều này cũng nên áp dụng tương tự cho các group thảo luận về Unreal Engine ở Việt Nam trên Facebook như [Cộng Đồng Unreal Engine Việt](https://www.facebook.com/groups/unrealvn/).
 
@@ -131,14 +133,14 @@ Lần đầu tiên tham gia một đội ngũ làm Unreal Engine 4, bạn nên �
 Gamemakin LLC không phải là một luật sư, nhưng đừng cố tạo ra các hành động phạm pháp khi làm việc trên một dự án UE4, bao gồm không giới hạn:
 
 * Đừng phân phối nội dung không có bản quyền
-* Đừng lấy tài liệu bản quyền hay tài nguyên sỡ hữu của bất cứ ai
+* Đừng lấy tài liệu bản quyền hay tài nguyên (asset) sỡ hữu của bất cứ ai
 * Đừng đánh cắp nội dung
 * Theo rõ chỉ thị hay nội qui của nội dung
 
-<a name="toc"></a>
+<a name="table-of-contents"></a>
 ## Mục Lục Nội Dung Chính Của Unreal Engine Style Guide Bản Tiếng Việt
 
-1. [Tiêu Chuẩn Đặt Tên Tài Nguyên](#anc)
+1. [Tiêu Chuẩn Đặt Tên Tài Nguyên (asset)](#anc)
 1. [Cấu Trúc Thư Mục](#structure)
 1. [Blueprints](#bp)
 1. [Static Meshes](#s)
@@ -148,9 +150,9 @@ Gamemakin LLC không phải là một luật sư, nhưng đừng cố tạo ra c
 
 <a name="anc"></a>
 <a name="1"></a>
-## 1.Tiêu Chuẩn Đặt Tên Tài Nguyên 
+## 1.Tiêu Chuẩn Đặt Tên Tài Nguyên (asset) 
 
-Cách viết code tiêu chuẩn là phải đặt nặng vấn đề định danh một cách nghiêm ngặt. Một dự án có cách định danh tiêu chuẩn sẽ giúp dễ quản lý tài nguyên, tìm kiếm, đối chiếu tham khảo hay duy trì một cách nhẹ nhàng.
+Cách viết code tiêu chuẩn là phải đặt nặng vấn đề định danh một cách nghiêm ngặt. Một dự án có cách định danh tiêu chuẩn sẽ giúp dễ quản lý tài nguyên (asset), tìm kiếm, đối chiếu tham khảo hay duy trì một cách nhẹ nhàng.
 
 Đa số được sử dụng đánh dấu với prefixes chữ cái đầu tiên của từ định danh kiểu tài nguyên và thêm dấu gạch dưới.
 
@@ -159,8 +161,8 @@ Cách viết code tiêu chuẩn là phải đặt nặng vấn đề định dan
 ### 1.1 Định Danh Gốc Tên Tài Nguyên / Base Asset Name - `Prefix_BaseAssetName_Variant_Suffix`
 
 >Ví dụ: Material Nhân Vat - M_Character (nên sử dụng định danh trong dự án là tiếng Anh nếu bạn muốn dễ dàng đặt câu hỏi, nhờ giúp đỡ hay làm việc với các developer trên thế giới).
-
->Hay thêm ví dụ: Texture Nhan Vat Phan Dien Diffuse - T_NhanVat_Evil_D 
+>
+>Hay thêm ví dụ: Texture Nhân Vật Phản Diện Kênh Diffuse - T_NhanVat_Evil_D 
 
 Tất cả tài nguyên nên được có tên gốc _Base Asset Name_
 Một cái tên gốc sẽ giúp nhóm hoặc liên hệ tài nguyên liên quan. Mọi tài nguyên tiếp diễn dưới dạng thuộc nhóm hệ cây theo tên này nên theo tiêu chuẩn `Prefix_BaseAssetName_Variant_Suffix`. 
@@ -210,27 +212,27 @@ Khi định danh tài nguyên nên sử dụng tham khảo theo bảng tên dư�
 #### Hạng Mục
 
 > 1.2.1 [Thông Thường Chung Chung](#anc-common)
-
+>
 > 1.2.2 [Animations](#anc-animations)
-
+>
 > 1.2.3 [Artificial Intelligence - AI](#anc-ai)
-
+>
 > 1.2.4 [Blueprints](#anc-bp)
-
+>
 > 1.2.5 [Materials](#anc-materials)
-
+>
 > 1.2.6 [Textures](#anc-textures)
-
+>
 > 1.2.7 [Miscellaneous](#anc-misc)
-
+>
 > 1.2.8 [Paper 2D](#anc-paper2d)
-
+>
 > 1.2.9 [Physics](#anc-physics)
-
+>
 > 1.2.10 [Sound](#anc-sounds)
-
+>
 > 1.2.11 [User Interface](#anc-ui)
-
+>
 > 1.2.12 [Effects](#anc-effects)
 
 <a name="anc-common"></a>
@@ -442,3 +444,173 @@ Gói 4 kênh dữ liệu vào trong một file texture (RGBA) là không nên ng
 | Material (Post Process) | PP_        |            |                                  |
 
 **[⬆ Trở Về Đầu Mục Lục](#table-of-contents)**
+
+<a name="2"></a>
+<a name="structure"></a>
+## 2. Content Directory Structure
+
+Cũng quan trọng giống như định danh tên tài nguyên, cấu trúc thư mục của một dự án cũng phải theo một qui luật. Tiêu chuẩn định danh tài nguyên và nội dung cấu trúc thư mục là đi cùng nhau, phá luật chỉ đem lại khủng hoảng và xào xáo tài nguyên dự án không cần thiết.
+
+Có nhiều cách để sắp xếp nội dung của một dự án UE4. Với cách sắp xếp thư mục đang đề ra sẽ cho phép chọn lọc (fileter) và tìm kiếm thông qua Content Browser để những ai làm việc và tìm tài nguyên của kiểu tài nguyên cụ thể thay vì cấu trúc thông thường là nhóm các kiểu tài nguyên vào một folder.
+
+> Nếu như bạn đang dùng prefix
+
+> If you are using the prefix [Thêm Biến Thể Định Danh ](#1.2) như trên, việc dùng folder để chứa tài nguyên cùng kiểu như `Meshes`, `Textures`, và `Materials` là kém thực tiễn vì kiểu tài nguyên đã được dễ dàng sắp xếp theo prefix cũng như chọn lọc (filter) trong Content Browser.
+
+<a name="2e1"><a>
+### 2e1 Ví Dụ Cấu Trúc Thư Mục Dự Án
+<pre>
+|-- Content
+    |-- <a href="#2.2">GenericShooter</a>
+        |-- Art (Tài Nguyên Nghệ Thuật)
+        |   |-- Industrial
+        |   |   |-- Ambient
+        |   |   |-- Machinery
+        |   |   |-- Pipes
+        |   |-- Nature
+        |   |   |-- Ambient
+        |   |   |-- Foliage
+        |   |   |-- Rocks
+        |   |   |-- Trees
+        |   |-- Office
+        |-- Characters (Tài Nguyên Nhân Vật)
+        |   |-- Bob
+        |   |-- Common
+        |   |   |-- <a href="#2.7">Animations</a>
+        |   |   |-- Audio
+        |   |-- Jack
+        |   |-- Steve
+        |   |-- <a href="#2.1.3">Zoe</a>
+        |-- <a href="#2.5">Core</a> (Phần lõi)
+        |   |-- Characters
+        |   |-- Engine
+        |   |-- <a href="#2.1.2">GameModes</a>
+        |   |-- Interactables
+        |   |-- Pickups
+        |   |-- Weapons
+        |-- Effects (Hiệu Ứng)
+        |   |-- Electrical
+        |   |-- Fire
+        |   |-- Weather
+        |-- <a href="#2.4">Maps</a> (Màn Chơi)
+        |   |-- Campaign1
+        |   |-- Campaign2
+        |-- <a href="#2.8">MaterialLibrary</a> (Thư Viện Shader)
+        |   |-- Debug
+        |   |-- Metal
+        |   |-- Paint
+        |   |-- Utility
+        |   |-- Weathering
+        |-- Placeables (Các Sự Kiện Nhặt, Lượm, Loot)
+        |   |-- Pickups
+        |-- Weapons (Vũ Khí)
+            |-- Common
+            |-- Pistols
+            |   |-- DesertEagle
+            |   |-- RocketPistol
+            |-- Rifles
+</pre>
+
+Nguyên nhân theo cấu trúc này được liệt kê theo hạng mục phụ phía dưới đây.
+
+### Sections
+
+> 2.1 [Tên Thư Mục](#structure-folder-names)
+>
+> 2.2 [Top-Level Folders / Thư Mục Trên Cùng](#structure-top-level)
+>
+> 2.3 [Developer Folders / Thư Mục Dev](#structure-developers)
+>
+> 2.4 [Maps / Màn Chơi](#structure-maps)
+>
+> 2.5 [Core / Lõi](#structure-core)
+>
+> 2.6 [`Assets` và `AssetTypes`](#structure-assettypes)
+>
+> 2.7 [Large Sets](#structure-large-sets)
+>
+> 2.8 [Material Library](#structure-material-library)
+
+<a name="2.1"></a>
+<a name="structure-folder-names"><a>
+### 2.1 Folder Names
+
+Đây là các qui luật thông thường đặt tên folder trong một cấu trúc nội dung.
+
+<a name="2.1.1"></a>
+#### 2.1.1 Luôn Sử Dụng [PascalCase](#terms-cases)
+
+**PascalCase** chỉ đến cách đặt tên với một ký tự viết hoa và thay vì dùng dấu cách - khoảng trắng giữa các từ, mỗi từ liền kề nhau với ký tự hoa đầu tiên của từ. Lấy ví dụ: `DesertEagle`, `RocketPistol`, và `ASeriesOfWords`.
+
+* *Xem thêm về [Cách Nhận Biết Chữ Hoa](#terms-cases)* *
+
+<a name="2.1.2"></a>
+#### 2.1.2 Không Bao Giờ Dùng Dấu Cách - Khoảng Trắng
+
+Nhấn mạnh [2.1.1](#2.1.1), không bao giờ dùng dấu cách. Dấu cách sẽ làm fail các công cụ và các xử lý hàng loạt. Lý tưởng nhất phần root của dự án cũng không nên đặt dấu cách và đặt ở nào đó không phải là phần vùng hệ thống, ví dụ: `D:\Project` thay vì để ở `C:\Users\My Name\My Documents\Unreal Projects` 
+
+<a name="2.1.3"></a>
+#### 2.1.3 Không Bao Giờ Dùng Ký Tự Unicode Hay Các Kiểu Symbol
+
+Nếu tên của một trong các nhân vật được đặt tên là **'Zoë'**, tên của folder nên là `Zoe`. Các ký tự Unicode còn tệ hơn [khoảng trắng - dấu cách](#2.1.2), nó làm cho FAIL khi xử lý từ các công cụ hay các thành phần của UE4 không hỗ trợ Unicode hay cả phần đường dẫn.
+
+Cũng thêm vào đó, nếu dự án của bạn có các [lỗi không giải thích được](https://answers.unrealengine.com/questions/101207/undefined.html) và máy tính của bạn có user name là ký tự Unicode, lấy ví dụ tên bạn là `Zoë`, mọi dự án đang được lưu tại folder `My Documents` sẽ gây ra lỗi này. Chỉ cần di chuyển thư mục dự án theo thay đổi `D:\Project` sẽ chỉnh được lỗi bí ẩn này. 
+
+Sử dụng các ký tự ngoài `a-z`, `A-Z`, và `0-9` như là `@`, `-`, `_`, `,`, `*`, và `#` cũng gây ra nhiều đau khổ trong quá trình truy tìm lỗi trên các nền tảng khác nhau, source control và làm hại các công cụ.
+
+<a name="2.2"></a>
+<a name="structure-top-level"><a>
+### 2.2 Sử Dụng Một Tên Folder Trên Cùng 'Top Level Folder' Cho Tài Nguyên Dự Án 
+
+Tất cả tài nguyên (asset) dự án nên được chứa trong một folder sau tên folder dự án. Lấy ví dụ, nếu như tên của của dự án là 'Generic Shooter, **mọi thành phần nội dung** của dự án phải được đặt trong `Content/GenericShooter`.
+
+Nội dung thư mục `Developers` không phải dành cho tài nguyên (asset) mà dự án của bạn dựa theo đó, nên nó không phải là một dự án cụ thể. Xem thêm [Developer Folders](#2.3)
+
+> The `Developers` folder is not for assets that your project relies on and therefore is not project specific. Chi tiết xem thêm [Developer Folders / Thư Mục Dev](#2.3).
+
+Có rất nhiều lý do để phải tiếp cận phương án này.
+
+<a name="2.2.1"></a>
+#### 2.2.1 Không Nên Có Kiểu Tài Nguyên Dạng Global Assets
+
+Thông thường the qui cách (style guide) code được viết, bạn thường được biết rằng không nên để namspace dạng global và điều này cũng ứng dụng tương tự cho folder. Khi tài nguyên (asset) nằm bên ngoài folder dự án sẽ gây rất nhiều khó khăn trong việc theo một cấu trúc folder cũng như đau khổ trong quản lý tài nguyên.
+
+Mỗi tài nguyên (asset) nên có mục đích dùng, nếu không thì nó không thuộc về dự án. Nếu như một tài nguyên chỉ dùng để thử nghiệm thì nó không nên nằm trong thư mục dự án mà nên để trong thư mục dev [`Developer`](#2.3).
+
+<a name="2.2.2"></a>
+#### 2.2.2 Giảm Thiểu Lỗi Phát Sinh Khi Migration 
+
+Khi làm việc trên nhiều dự án, rất thông thường sẽ thấy team sao chép tài nguyên (asset) của dự án này sang dự án khác nếu như nó có lợi cho cả hai. Khi cần thực hiện việc này, cách tốt nhất là dùng chức năng Migrate có sẵn trong Content Browser, nó không chỉ sao chép mỗi tài nguyên (asset) mà sẽ sao chép cả những tài nguyên (asset) tham chiếu phụ thuộc.  
+
+Các mẫu tài nguyên tham chiếu phụ thuộc (dependencies) là thứ dễ gây đau đầu nhất. Nếu tài nguyên của hai dự án mà đều không có thư mục **Top Level Folder** và cũng như chúng có cùng tên hay đã được thuyên chuyển (migrated) từ trước, một cú migrate mới có thể dễ dàng xóa sổ mọi thay đổi với tài nguyên (asset) hiện tại.
+
+Đó cũng là lý do vì sao đội ngũ Marketplace của Epic cũng ép buột dùng chính sách tương tự khi đăng ký (submit) tài nguyên (asset).
+
+Sau một lần migration, công cụ 'Replace References' giúp an toàn việc thuyên chuyển tài nguyên, sử dụng thông qua Content Browser sẽ tạm dừng và chỉ ra các tài nguyên không nằm trong một _ _top level folder_ _ của dự án. Một khi tài nguyên đã được thuyên chuyển hoàn toàn, không nên có thêm một _ _top level folder_ _ trong Content. Cách làm này đảm bảo _100%_ an toàn trong việc thuyên chuyển.
+
+<a name="2.2.2e1"></a>
+##### 2.2.2e1 Ví Dụ Về Master Material
+
+Lấy ví dụ bạn làm một vật liệu master (để thừa kế hay instance) trong dự án để có thể tái sử dụng trong một dự án khác nên bạn sẽ thuyên chuyển qua. Nếu tài nguyên này không nằm trong *top level folder*, có thể nó sẽ được đặt tên `Content/MaterialLibrary/M_Master`. Nếu dự án đích không có vật liệu cùng tên, sẽ không có phiền toái gì xảy ra.
+
+Khi cùng thao tác trên cả hai dự án, tiến trình lặp lại có thể thay đổi mục đích dùng vật liệu master cũng là bình thường khi phát triển dự án.
+
+Rắc rối nảy sinh khi, lấy ví dụ, một artist của một trong hai dự án tạo ra các set lắp ghép static mesh và rồi ai đó muốn dùng các set lắp ghép đó vào dự án thứ hai. Nếu như artist đã tạo ra tài nguyên sử dụng vật liệu instance dựa trên `Content/MaterialLibrary/M_Master`, khi thực hiện thuyên chuyển (migration) có khả năng xảy ra lỗi cho việc tài nguyên đã thuyên chuyển trước đó là chính `Content/MaterialLibrary/M_Master`.
+
+Đây là lỗi khó đoán và giải thích. Người thực hiện thao tác thuyên chuyển static meshes có thể không phải cũng là người đã thông thuộc vật liệu master của cả hai dự án, và họ cũng có thể không nhận biết thực thể instance đang dựa trên vật liệu master. Công cụ Migrate đòi hỏi toàn bộ hệ phái sinh tham chiếu phụ thuộc, nên nó sẽ ép để lấy `Content/MaterialLibrary/M_Master` khi sao chép tài nguyên này sang dự án khác và **ghi đè** lên cái có sẵn.
+
+Ngay tại điểm này nếu vật liệu master của cả hai dự án là không tương thích, rũi ro tàn phá hệ vật liệu phái sinh thừa kế theo hoàn toàn xảy ra, chỉ bởi vì đơn giản nó không được chứa trong một *top level folder*. Bây giờ thì công việc đơn giản của migrate tài nguyên static meshes trở thành một công việc khó nhằn.  
+
+<a name="2.2.3"></a>
+#### 2.2.3 Các Mẫu, Templates, và Nội Dung Trên Marketplace Là Không Rũi Ro
+
+Mở rộng thêm phần [2.2.2 Giảm Thiểu Lỗi Phát Sinh Khi Migration](#2.2.2), nếu như thành viên trong team quyết định thêm vào nội dung mẫu, file template, hoặc các tài nguyên họ đã mua từ marketplace, chắc chắc nó được bảo đảm sẽ không gây tranh chấp với dự án đang làm ngoại trừ khi dự án của bạn không có trong một *top level folder* với tên định danh duy nhất. 
+
+Tuy nhiên cũng không nên hoàn toàn tin tưởng vào nội dung trên marketplace [Top-Level Folders / Thư Mục Trên Cùng](#2.2). Có rất nhiều nội dung tài nguyên được tạo mới có *top level folder* nhưng cũng đi kèm khả năng có sự hiệu chỉnh tài nguyên có sẵn khi dùng mẫu của Epic Sample Content thường được đặt trong folder `Content`.
+
+Điều này còn tồi tệ hơn khi hai nội dung mua từ marketplace cùng sử dụng chung nội dung của Epic Sample Content. Nếu như tất cả tài nguyên của bạn được đặt để trong một folder cụ thể, bao gồm cả thư mục mẫu đã được dời vào trong thư mục của bạn, dự án của bạn không bao giờ xảy ra lỗi. 
+
+#### 2.2.4 DLC, Sub-Projects, Và Patches Rất Dễ Để Duy Trì 
+
+Nếu bạn tính phát hành DLC hay hàng loạt dự án phụ (sub-projects) liên kết, tài nguyên theo các dự án này nên có *top level folder* riêng biệt. Nó giúp khi bạn cook một bảng DLC tách biệt khỏi dự án chỉnh đầy thuận lợi. Dự án phụ cũng dễ thuyên chuyển hơn mà không tốn công. Nếu cần phải thay đổi vật liệu của tài nguyên hay thêm tài nguyên nào đó đè lên cái có sẵn trong một bảng vá (patch), bạn cứ bỏ vào trong một thư mục patch và làm việc thuận lợi không lo phá hỏng dự án chính.
+
