@@ -923,7 +923,11 @@ Ví dụ: Dùng thêm số nhiều `Targets`, `Hats`, và `EnemyPlayers`, **Ch�
 
 Mọi biến đều an toàn để thay đổi giá trị hay để thay đổi hành vi của một Blueprint cần nên thêm đánh dấu kiểm `Editable`.
 
+![Màn Hình Biến Hiệu Chỉnh](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-editable-option.JPG)
+
 Ngược lại, mọi biến không an toàn để thay đổi giá trị hay không muốn expose cho designer thì _Không Nên_ đánh dấu `Editable`, trừ phi vì lý do kỹ thuật thì biến đó nên đánh dấu là `Expose On Spawn`.
+
+![Màn Hình Biến `Expose On Spawn`](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-expose-on-spawn.JPG)
 
 Không nên quá cứng nhắc khi đánh dấu kiểm `Editable`.
 
@@ -931,7 +935,9 @@ Không nên quá cứng nhắc khi đánh dấu kiểm `Editable`.
 <a name="bp-vars-editable-tooltips"></a>
 ##### 3.2.2.1 Tooltips / Chú Giải
 
-Mọi biến đánh dấu kiểm `Editable`, bao gồm các biến đánh dấu có thể thay đổi bao gồm cả biến được đánh dấu `Expose On Spawn`, nên đợc có để chú giải `Tooltip` nhằm giải thích tác dụng giá trị tạo ảnh hưởng lên chức năng của Blueprint.
+Mọi biến đánh dấu kiểm `Editable`, bao gồm các biến đánh dấu có thể thay đổi bao gồm cả biến được đánh dấu `Expose On Spawn`, nên có để chú giải `Tooltip` nhằm giải thích tác dụng giá trị tạo ảnh hưởng lên chức năng của Blueprint.
+
+![Màn Hình Tooltips](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-tool-tip.JPG)
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
@@ -942,6 +948,8 @@ Mọi biến đánh dấu kiểm `Editable` nên làm kiểu thanh trượt và 
 Ví dụ: một Blueprint tạo ra các cây hàng rao có thể tùy chỉnh biến `PostsCount` và nếu giá trị đầu vào bằng -1 là thật không phù hợp. Dùng range để đánh dấu 0 là tối thiểu.
 
 Nếu biến có thể hiệu chỉnh được dùng ở Construction Script, nên dùng một thanh trượt phù hợp để ai đó không vô tình để vào một biến quá lớn gây crash editor.
+
+![Màn Hình Đặt Giá Trị Thanh Trượt Và Khoảng Giá Trị](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-slider-range.JPG)
 
 Một giá trị có range chỉ cần nếu biên có thể đoán. Trong khi đó một thanh trượt sẽ hạn chế việc nhập giá trị quá lớn.
 
@@ -1067,7 +1075,7 @@ Mọi hàm để phản ảnh kiểu lập lại (dùng theo chức năng networ
 
 <a name="3.3.1.3"></a>
 <a name="bp-funcs-naming-bool"></a>
-#### 3.3.1.3 Kiểu Hàm Thông Tinh Trả Về Giá Trị Boolean Nên Là Loại Đặt Câu Hỏi 
+#### 3.3.1.3 Kiểu Hàm Thông Tin Trả Về Giá Trị Boolean Nên Là Loại Đặt Câu Hỏi 
 
 Khi viết một hàm không thay đổi trạng thái (state) hoặc hiệu chỉnh một đối tượng hay đơn thuần chỉ lấy thông tin, trạng thái hoặc tính toán giá trị yes/no, nó nên là đặt tên kiểu một câu hỏi. Cái này cũng theo luật [đặt tên là động từ](#bp-funcs-naming-verbs)
 
@@ -1220,7 +1228,7 @@ Hoặc hiện thân của kiểu khủng khiếp nhùng nhằng hơn
 Kiểu Ví Dụ Chấp Nhận Được: một vài node cho dù làm kiểu gì cũng không thể sắp xếp align được. Trong trường hợp này giảm thiệu sự rối rắm của dây tối thiểu là ổn.
 ![Chấp Nhận Được](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-align-wires-acceptable.png "Tạm Được")
 
-Kiểu Của Vũ Phạm Rainstorm Film trong game bắn máy bay: 
+Kiểu Của [@Vũ Phạm](https://twitter.com/phamduongvu) [Rainstorm Film](www.rainstormfilm.com) đang làm game bắn máy bay: 
 ![Sắp Xếp Theo Dây Execution Và Flow](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-acceptance-node-vupham-rainstorm-film.JPG "Tạm Được")
 
 
