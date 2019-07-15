@@ -1209,19 +1209,19 @@ Dây nhợ phải rõ ràng có đầu và đuôi. Không chơi kiểu dây nh�
 Luôn sắp xếp theo dạng dây, không phải dạng node. Không thể điều khiển được kích thước và vị trí pin của node, nhưng hoàn toàn có thể điều khiển vị trí node nên điều đó cũng chỉnh được dây. Dây kéo thẳng cho thấy rõ ràng của luồng xử lý. Dây lùng bùng chả hiểu gì. Dùng hotkey: Q để làm thằng dây khi một node được chọn và control vào một node làm vật chủ align.
 
 Đây là ví dụ Good: Cái phần đầu của node được sắp xếp thẳng hàng theo dây trắng luồng execution 
-![Sắp Xếp Theo Dây Execution](../img/bp-graphs-align-wires-good.png "Sắp Xếp Theo Dây Execution")
+![Sắp Xếp Theo Dây Execution](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-align-wires-good.png "Sắp Xếp Theo Dây Execution")
 
 Ví dụ tồi: phần top của node cố gắng sắp xếp align theo đỉnh node gây ra dây luồng exec bị dùng dằng (node ADD Array so với Branch) 
-![Tồi Tệ](../img/bp-graphs-align-wires-bad.png "Dây Rối Rắm")
+![Tồi Tệ](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-align-wires-bad.png "Dây Rối Rắm")
 
 Hoặc hiện thân của kiểu khủng khiếp nhùng nhằng hơn
-![Lùng Bùng Spaghetti](..raw/master/img/bp-graphs-wire-spaghetti.jpg "Spaghetti")
+![Lùng Bùng Spaghetti](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-wire-spaghetti.jpg "Spaghetti")
 
 Kiểu Ví Dụ Chấp Nhận Được: một vài node cho dù làm kiểu gì cũng không thể sắp xếp align được. Trong trường hợp này giảm thiệu sự rối rắm của dây tối thiểu là ổn.
-![Chấp Nhận Được](../img/bp-graphs-align-wires-acceptable.png "Tạm Được")
+![Chấp Nhận Được](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-align-wires-acceptable.png "Tạm Được")
 
 Kiểu Của Vũ Phạm Rainstorm Film trong game bắn máy bay: 
-[Sắp Xếp Theo Dây Execution Và Flow](../img/bp-graphs-acceptance-node-vupham-rainstorm-film.JPG "Tạm Được")
+[Sắp Xếp Theo Dây Execution Và Flow](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-acceptance-node-vupham-rainstorm-film.JPG "Tạm Được")
 
 
 <a name="3.4.3"></a>
