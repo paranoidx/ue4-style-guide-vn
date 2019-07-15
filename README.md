@@ -49,7 +49,7 @@ Có nhiều cách thể hiện đặt tên khi lập trình hay làm việc vớ
 >###### PascalCase - Kiểu Pascal
 >
 >Viết hoa mọi chữ cái đầu một tự và không có khoảng trắng. Ví dụ như: `DesertEagle`, `StyleGuide`, `ASeriesOfWords`.
-
+>
 >###### camelCase - Kiểu Lạc Đà
 >
 >Cách này tương tự như viết code Java, chữ cái đầu tiên không viết hoa, mỗi từ liền sau đó đều viết hoa ký tự đầu tiên. Ví dụ: `desertEagle`, `styleGuide`, `aSeriesOfWords`.
@@ -93,9 +93,9 @@ Style guide nên được cập nhật liên tục và cũng nên được đổ
 >#### "Arguments over style are pointless. There should be a style guide, and you should follow it."
 >[_Rebecca Murphey_](https://rmurphey.com)
 
->Tranh cãi cách viết code là vô nghĩa. Chỉ cần có một style guid và nên theo nó.
+>Tranh cãi cách viết code là vô nghĩa. Chỉ cần có một style guide và nên làm theo nó.
 
->####"Part of being a good steward to a successful project is realizing that writing code for yourself is a Bad Idea™. If thousands of people are using your code, then write your code for maximum clarity, not your personal preference of how to get clever within the spec."
+>#### "Part of being a good steward to a successful project is realizing that writing code for yourself is a Bad Idea™. If thousands of people are using your code, then write your code for maximum clarity, not your personal preference of how to get clever within the spec."
 >[_Idan Gazit_](https://twitter.com/idangazit)
 
 >Cách để một dự án thành công là không tôn sùng việc viết code theo chủ nghĩa cá nhân. Nếu như code của bạn được sử dụng bởi người khác, thì viết code cần phải rõ ràng, không chỉ để tham khảo cá nhân hay làm cho mọi thứ ghê ghớm lên.
