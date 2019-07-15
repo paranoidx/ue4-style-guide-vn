@@ -9,7 +9,7 @@ Theo nguyên bản Allar cho biết dựa theo rất nhiều trên [Airbnb Javas
 
 Epic Games cũng có một bộ tiêu chuẩn dành cho coding C++, tham khảo thêm về [codebase ở đây](https://docs.unrealengine.com/en-US/Programming/Development/CodingStandard/index.html). 
 
-Hiểu về cách định dạng văn bản của file README.MD theo GitHub nên tham khảo tài liệu của GitHub về [GitHub formmating ở đây](https://help.github.com/en/enterprise/2.17/user/articles/basic-writing-and-formatting-syntax)
+Hiểu về cách định dạng văn bản của file README.MD theo GitHub nên tham khảo tài liệu của GitHub về [GitHub formatting ở đây](https://help.github.com/en/enterprise/2.17/user/articles/basic-writing-and-formatting-syntax)
 
 ## Unreal Engine 4 Linter Plugin
 Allar có thiết kế một plugin giúp tự động kiểm soát các tài nguyên (asset) có trong project Unreal Engine 4 theo style guide, tuy nhiên hiện nay đã không còn hoạt động và không còn cập nhật với các bảng Unreal Engine mới, xem thêm tại market [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter).
@@ -257,7 +257,7 @@ Khi định danh tài nguyên nên sử dụng tham khảo theo bảng tên dư�
 
 <a name="anc-animations"></a>
 <a name="1.2.2"></a>
-#### 1.2.2 Animations ![#](https://img.shields.io/badge/lint-supported-green.svg)
+#### 1.2.2 Animations 
 
 | Kiểu Tài Nguyên              | Prefix     | Suffix     | Ghi Chú                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -386,7 +386,7 @@ Gói 4 kênh dữ liệu vào trong một file texture (RGBA) là không nên ng
 
 <a name="anc-paper2d"></a>
 <a name="1.2.8"></a>
-### 1.2.8 Paper 2D ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.8 Paper 2D 
 
 | Kiểu Tài Nguyên              | Prefix     | Suffix     | Ghi Chú                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -398,7 +398,7 @@ Gói 4 kênh dữ liệu vào trong một file texture (RGBA) là không nên ng
 
 <a name="anc-physics"></a>
 <a name="1.2.9"></a>
-### 1.2.9 Physics ![#](https://img.shields.io/badge/lint-supported-green.svg)
+### 1.2.9 Physics 
 
 | Kiểu Tài Nguyên              | Prefix     | Suffix     | Ghi Chú                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -495,7 +495,7 @@ Có nhiều cách để sắp xếp nội dung của một dự án UE4. Với c
         |-- <a href="#2.4">Maps</a> (Màn Chơi)
         |   |-- Campaign1
         |   |-- Campaign2
-        |-- <a href="#2.8">MaterialLibrary</a> (Thư Viện Shader)
+        |-- <a href="#2.8">MaterialLibrary</a> (Thư Viện Vật Liệu)
         |   |-- Debug
         |   |-- Metal
         |   |-- Paint
@@ -529,7 +529,7 @@ Nguyên nhân theo cấu trúc này được liệt kê theo hạng mục phụ 
 >
 > 2.7 [Large Sets](#structure-large-sets)
 >
-> 2.8 [Material Library](#structure-material-library)
+> 2.8 [Material Library / Thư Viện Vật Liệu](#structure-material-library)
 
 <a name="2.1"></a>
 <a name="structure-folder-names"><a>
@@ -613,4 +613,82 @@ Tuy nhiên cũng không nên hoàn toàn tin tưởng vào nội dung trên mark
 #### 2.2.4 DLC, Sub-Projects, Và Patches Rất Dễ Để Duy Trì 
 
 Nếu bạn tính phát hành DLC hay hàng loạt dự án phụ (sub-projects) liên kết, tài nguyên theo các dự án này nên có *top level folder* riêng biệt. Nó giúp khi bạn cook một bảng DLC tách biệt khỏi dự án chỉnh đầy thuận lợi. Dự án phụ cũng dễ thuyên chuyển hơn mà không tốn công. Nếu cần phải thay đổi vật liệu của tài nguyên hay thêm tài nguyên nào đó đè lên cái có sẵn trong một bảng vá (patch), bạn cứ bỏ vào trong một thư mục patch và làm việc thuận lợi không lo phá hỏng dự án chính.
+
+<a name="2.3"></a>
+<a name="structure-developers"></a>
+### 2.3 Sử Dụng Folder Dev Cho Việc Tự Thử Nghiệm 
+
+Trong quá trình phát triển dự án, thành viên trong team thường có một nơi như "sand box" để tự thử nghiệm mà không lo làm hỏng phần lõi dự án. Các bảng thử nghiệm này có thể dở dang, thành viên cũng vẫn có thể muốn đặt tài nguyên lên máy chủ source control của dự án. Không phải team nào cũng dùng folder Dev, team nào dùng thư mục này hay gặp trở ngại trong việc quản lý tài nguyên khi đăng ký lên source control.
+
+Thường dễ xảy ra lỗi khi thành viên vô tình dùng các tài nguyên chưa sẵn sàng sử dụng sau đó sẽ gây ra lỗi mặc dù tài nguyên đó đã được xóa. Lấy ví dùng một tranh chấp kinh hoàng có thể xảy ra khi một artist nào đó tạo ra các tài nguyên kiểu set module và vẫn đang loay hoay chỉnh sửa kích thước để phù hợp với grid snapping. Một bạn thiết kế màn chơi thấy tài nguyên này thú vị, có thể đem dùng ngập tràn trong các màn chơi mà không biết rằng sau đó tài nguyên trên sẽ bị xóa đi. Đây là cơ hội cho drama.
+
+Nếu các tài nguyên này được để vào thư mục Dev, các bạn thiết kế màn chơi sẽ hiểu rằng không bao giờ nên đụng vào. Content Browser có một chức năng trong View Options giúp giấu đi các thư mục Dev (mặc nhiên sẽ không hiển thị) giúp tránh tai họa xảy ra khi vô tình dùng tài nguyên đang bào chế chưa phát hành.
+
+Một khi tài nguyên này đã sẵn sàng để dùng, chỉ cần đơn giản "move" nó sang thư mục cụ thể và chỉnh sửa các [redirectors](https://docs.unrealengine.com/en-US/Engine/Basics/Redirectors/index.html). Đây có nghĩa là đăng ký cho tài nguyên đã xong quá trình bào chế, có thể an toàn sử dụng cho sản xuất.
+
+<a name="2.4"></a>
+<a name="structure-maps"></a>
+### 2.4 Tất Cả File Map [<sup>Màn Chơi</sup>](#terms-level-map) Phải Để Trong Folder Tên Maps
+
+File màn chơi (map) rất đặc biệt và thông dụng cho mỗi dự án để nó có hệ thống đặt tên riêng, đặc biệt là khi làm việc với dạng sub-level hay streaming level. Không quan tâm cách tổ chức hay hệ thống màn chơi thế nào trên mỗi dự án, tất cả màn chơi levels phải được để trong `/Content/Project/Maps`.
+
+Kêu ai đó mở cụ thể một màn chơi lên mà không cần chỉ chỗ nào để là cứu rỗi về thời gian và tạo động lực trong cuộc sống dòn dã hơn. Thông dụng là các thư mục con trong thư mục `Maps` như `Maps/Campaign1/` hay `Maps/Arenas` chứa các màn chơi theo mục đích, miễn chúng đảm bảo nằm trong `/Content/Project/Maps`.
+
+Nó giúp đơn giản hóa công việc cooking cho các kỹ sư. Sẽ rất suy sụp để truy cập toàn bộ thư mục dự án để tìm file. Các màn chơi nếu cùng nằm trong một thư mục thì sẽ khó vô tình lỡ không cook sót map nào đó. Nó cũng giúp dễ dàng hơn quá trình thực hiện lighting script hay khi kiểm tra chất lượng. 
+
+<a name="2.5"></a>
+<a name="structure-core"></a>
+### 2.5 Sử Dụng Tên `Core` Cho Folder Chứa Blueprints Thiết Yếu Cũng Như Assets Khác
+
+Dùng folder `/Content/Project/Core` chứa tài nguyên cơ bản để một dự án vận hành. Lấy ví dụ: `GameMode`, `Character`, `PlayerController`, `GameState`, `PlayerState` hay các Blueprints tương tự nên để vào đây.
+
+Nó cũng tương đồng với thông điệp "Không Đụng Vô". Các thành viên không phải kỹ sư không có lý dó để truy cập vào folder `Core`. Cũng kèm theo kỹ năng code tốt trên một style guide, các designer có thể xử lý gameplay thông qua các class con mà hàm đã được expose. Các bạn thiết kế màn chơi (world builder) nên sử dụng Blueprints sẵn có trong các thư mục thay vì cố dùng các class nền tảng.
+
+Lấy ví dụ như trong dự án có nhiều asset cần thu thập trong màn chơi, nên có một class cơ sở Pickup trong thư mục `Core/Pickups` định ra các hành vi cơ sở cho việc thu thập. Những kiểu thu thập cụ thể như Máu hay Đạn nên để trong folder `/Content/Project/Placeables/Pickups/`. Các game designer có thể dùng hay tùy chỉnh các kiểu thu thập trong folder này nhưng không đụng vào `Core/Pickups` vì nó có thể gây lỗi phát sinh dẫn đến không thực hiện được hành vi thu thập.
+
+<a name="2.6"></a>
+<a name="structure-assettypes"></a>
+### 2.6 Không Nên Đặt Tên Folder Là `Assets` Hay `AssetTypes`
+
+<a name="2.6.1"></a>
+#### 2.6.1 Tạo Ra Một Folder Tên `Assets` Là Dư Thừa 
+
+Mọi tài nguyên (asset) là assets.
+
+<a name="2.6.2"></a>
+#### 2.6.2 Tạo Ra Một Thư Mục Tên `Meshes`, `Textures`, Hay `Materials` Đều Dư Thừa. 
+
+Mọi tên tài nguyên được đặt với kiểu tài nguyên để nhận biết. Dùng các tên này chỉ gây ra dưa thừa và dễ dàng bị thay thế hay Content Browser sẽ filter.
+
+Muốn nhìn thấy chỉ mỗi static mesh trong `Environment/Rocks/` ? đơn giản chỉ cần bật tính năng view options trong Content Browser filter Static Mesh, tài nguyên cũng sẽ được sắp xếp theo sẵn ký tự. 
+
+Muốn nhìn thấy cả static meshes và skeletal meshes? Chỉ cần bật tính năng filter cho cả hai, điều này cũng giúp tránh khả năng chọn `Control-Click` cùng lúc hai thư mục khi xem dạng cây Content Browser.
+
+> Điều này cũng giải thích việc đặt nguyên tên tài nguyên không ích lợi. Dùng `S_` prefix cho static mesh tiết kiệm chỉ 2 ký tự trong khi dùng `Meshes/` prefix chiếm dụng tới 7 ký tự.
+
+Không làm theo qui luật này cũng dễ xảy ra việc ai đó đem static mesh hay texture bỏ vào thư mục Materials.
+
+<a name="2.7"></a>
+<a name="structure-large-sets"></a>
+### 2.7 Các Set Khổng Lồ Có Thư Mục Cấu Trúc Riêng 
+
+Điều này là ngoại lệ mang tính ứng dụng cho mục [2.6](#2.6).
+
+Có nhiều loại tài nguyên tập hợp của một số lượng khủng về các file phát sinh liên quan mà mỗi tài nguyên lại mang một mục đích duy nhất. Hai thứ thông dụng nhất là Animation và Audio. Nếu đang dùng trên 15+ mỗi loại tài nguyên này thì chúng nên ở cùng một folder.
+
+Lấy ví dụ: animation được dùng chung trên nhiều nhân vật nên để ở `Characters/Common/Animations` và có thư mục con cho mục đích cụ thể `Locomotion` hay `Cinematic`.
+
+> Điều này không liên quan đến dạng asset như texture hay vật liệu. Việc dùng folder `Rocks` là thông dụng khi có rất nhiều texture đi kèm nếu như có một số lượng lớn các loại rocks, tuy nhiên mỗi texture này liên đới đến một loại rock cụ thể thì nên có tên riêng biệt liên đới theo loại rock đó. Ngay cả khi texture này không thuộc vào thư viện vật liệu [Material Library / Thư Viện Vật Liệu](#2.8).
+
+<a name="2.8"></a>
+<a name="structure-material-library"></a>
+### 2.8 `MaterialLibrary` / Thư Viện Vật Liệu
+
+Nếu cách dự án bạn dùng là kiểu vật liệu master, các loại vật liệu theo lớp, hoặc bất cứ dạng tái sử dụng vật liệu hay texture mà không thuộc về một subset hay tài nguyên nào, nên để tất cả các tài nguyên vật liệu này vào `Content/Project/MaterialLibrary`.
+
+> Đây cũng là cách dự án dễ để ép buột dùng chính sách 'use material instances only' (chỉ dùng vật liệu instance). Nếu mọi thành viên đều làm việc với vật liệu instance thì nơi duy nhất chứa vật liệu gốc (master) chính là folder này. Bạn rất dễ dàng kiểm tra vật liệu cơ sở này trên các folder khác mà không phải `MaterialLibrary`.
+
+Thư mục `MaterialLibrary` không cần chỉ chứa mỗi vật liệu. Các kiểu texture tính năng dùng chung, hàm vật liệu và các thứ khác kiểu tương tự cũng nên chứa vào đây phục vụ chung mục đích. Lấy ví dụ, một texture noise nên được lưu vào `MaterialLibrary/Utility`.
+
+Mọi kiểu thử nghiệm hay vật liệu đang debug lưu tại `MaterialLibrary/Debug`. Điều này giúp loại bỏ vật liệu hỏng, thử nghiệm khỏi quá trình shipping và cũng cách ly khỏi tài nguyên đi vào sản xuất hay có những tham chiếu gẫy lỗi. 
 
