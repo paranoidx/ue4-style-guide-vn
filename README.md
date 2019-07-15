@@ -709,3 +709,386 @@ Nếu bạn tìm thấy trong Content Browser có một thư mục rỗng mà kh
 1. Ghi nhận thay đổi - Submit lên source control.
 
 **[⬆ Back to Top](#table-of-contents)**
+
+<a name="3"></a>
+<a name="bp"></a>
+## 3. Blueprints 
+
+Mục này sẽ tập trung vào các class Blueprint. Nếu có thể, hãy theo qui luật tiêu chuẩn code của [Epic's Coding Standard](https://docs.unrealengine.com/latest/INT/Programming/Development/CodingStandard).
+
+### Các Hạng Mục
+
+> 3.1 [Compiling / Biên Dịch](#bp-compiling)
+
+> 3.2 [Variables / Biến](#bp-vars)
+
+> 3.3 [Functions / Hàm](#bp-functions)
+
+> 3.4 [Graphs](#bp-graphs)
+
+<a name="3.1"></a>
+<a name="bp-compiling"></a>
+### 3.1 Compiling / Biên Dịch 
+
+Mọi Blueprint cần được biên dịch không lỗi, không báo. Phải chỉnh ngay nếu có những mầm mống này hiện ra vì nó sẽ gây ra những sự cố trầm trọng hơn vô cùng đáng sợ.
+
+**Không bao giờ** tải lên source control các Blueprint đang bị hỏng. Nếu như phải chứa nó trên source control hãy dùng chức năng Stash *Git* hay Shelve *Mercurial* blueprint đó.
+
+Tìm hiểu thêm về:
+- [Stash](https://git-scm.com/book/en/v1/Git-Tools-Stashing) 
+- [Shelve](https://docs.microsoft.com/en-gb/azure/devops/repos/tfvc/suspend-your-work-manage-your-shelvesets?view=azure-devops)
+
+Các Blueprint hỏng gây ra xáo trộn và thể hiện dưới nhiều dạng khác nhau, như là hỏng các tham chiếu ref, các hành vi không kiểm soát, không cook được, hoặc tự biên dịch lại không cần thiết. Một Blueprint hỏng có sức mạnh tàn phá toàn bộ game của bạn.
+
+<a name="3.2"></a>
+<a name="bp-vars"></a>
+### 3.2 Variables / Biến 
+
+Từ `variable` và `property` dùng thay cho nhau.
+
+#### Hạng Mục
+
+> 3.2.1 [Naming / Định Danh](#bp-vars)
+
+> 3.2.2 [Editable / Các Biến Có Thể Hiệu Chỉnh](#bp-vars-editable)
+
+> 3.2.3 [Categories / Phân Loại](#bp-vars-categories)
+
+> 3.2.4 [Access / Truy Cập](#bp-vars-access)
+
+> 3.2.5 [Advanced](#bp-vars-advanced)
+
+> 3.2.6 [Transient](#bp-vars-transient)
+
+> 3.2.7 [Config](#bp-vars-config)
+
+<a name="3.2.1"></a>
+<a name="bp-var-naming"></a>
+#### 3.2.1 Định Danh
+
+<a name="3.2.1.1"></a>
+<a name="bp-var-naming-nouns"></a>
+##### 3.2.1.1 Danh Từ 
+
+Mọi biến không phải boolean đều phải rõ ràng, rõ nghĩa, và hiểu theo nghĩa danh từ.
+
+<a name="3.2.1.2"></a>
+<a name="bp-var-naming-case"></a>
+##### 3.2.1.2 PascalCase 
+
+Mọi biến không phải boolean đều phải ở dạng [PascalCase](#terms-cases).
+Tức ghi hoa ký tự đầu tiên của mỗi từ, không khoảng trắng - dấu cách.
+
+<a name="3.2.1.2e"></a>
+###### 3.2.1.2e Các Ví Dụ:
+
+Rõ nghĩa, không phải dạng boolean, viết hoa ký tự đầu tiên, không dùng dấu cách.
+
+* `Score`
+* `Kills`
+* `TargetPlayer`
+* `Range`
+* `CrosshairColor`
+* `AbilityID`
+
+<a name="3.2.1.3"></a>
+<a name="bp-var-bool-prefix"></a>
+##### 3.2.1.3 Sử Dụng `b` Prefix Cho Kiểu Dữ Liệu Boolean
+
+Tất cả biến Boolean phải được đặt tên theo [PascalCase](#terms-cases) với prefixed chữ `b` viết thường.
+
+Ví Dụ: dùng `bDead` và `bEvil`, **KHÔNG PHẢI** `Dead` và `Evil`.
+
+Editor của UE4 tự bỏ chữ `b` viết thường ra khỏi node khi hiển thị biến.
+
+<a name="3.2.1.4"></a>
+<a name="bp-var-bool-names"></a>
+##### 3.2.1.4 Định Danh Boolean
+
+<a name="3.2.1.4.1"></a>
+###### 3.2.1.4.1 Thông Tin Chung Và Trạng Thái Độc Lập 
+
+Mọi biến Boolean phải được định danh tính từ khi có thể nếu đang thể hiện thông tin chung. Đừng bỏ thêm những từ hay câu ý đồ đặt câu hỏi như `Is`. Đây là phần dành riêng cho dùng trong Hàm functions.
+
+Ví dụ: `bDead` và `bHostile` **KHÔNG PHẢI** `bIsDead` và `bIsHostile`
+
+Tránh dùng nghĩa động từ như `bRunning`. Động từ dẫn đến trạng thái phức tạp.
+
+<a name="3.2.1.4.2"></a>
+###### 3.2.1.4.2 Trạng Thái Phức Tạp  
+
+Không dùng biến boolean để thể hiện dạng phức tạp hay phụ thuộc. Điều này gây khó dễ để thêm hay bớt và khó đọc. Dùng kiểu liệt kê (enumeration) thay cho việc đó.
+
+Ví dụ: 
+- Khi định nghĩa vũ khí, **KHÔNG NÊN DÙNG** `bReloading` và `bEquipping` nếu vũ khí không thể sử dụng cả hai trạng thái nạp đạn hay trang bị. Hãy đặt dạng liệt kê (enumeration) `EWeaponState` và sử dụng biến với các kiểu đặt trạng thái liệt kê `WeaponState`. Điều này giúp dễ thêm trạng thái cho vũ khí.
+
+- **Không dùng** `bRunning` nếu cũng cần cả `bWalking` hoặc `bSprinting`. Nên đặt ra một enumeration dễ hiểu với tên các trạng thái.
+
+<a name="3.2.1.5"></a>
+<a name="bp-vars-naming-context"></a>
+##### 3.2.1.5 Cân Nhắc Ngữ Cảnh 
+
+Mọi tên biến không nên dư thừa với ngữ cảnh cũng như các biến tham chiếu luôn có ngữ cảnh phù hợp.
+
+<a name="3.2.1.5e"></a>
+###### 3.2.1.5e Ví Dụ:
+
+Nên cân nhắc đặt tên Blueprint `BP_PlayerCharacter`.
+
+Còn đây là **Bèo**
+
+* `PlayerScore`
+* `PlayerKills`
+* `MyTargetPlayer`
+* `MyCharacterName`
+* `CharacterSkills`
+* `ChosenCharacterSkin`
+
+Tất cả tên biến trên rất dư thừa. Các biến tên kiểu đó ngụ ý rằng các biến đang thuộc về `BP_PlayerCharacter`. Nên đặt như sau.
+
+**Good**
+
+* `Score`
+* `Kills`
+* `TargetPlayer`
+* `Name`
+* `Skills`
+* `Skin`
+
+<a name="3.2.1.6"></a>
+<a name="bp-vars-naming-atomic"></a>
+##### 3.2.1.6 _Không Nên_ Thêm Kiểu Tên Nguyên Tử / Nguyên Tố
+
+**Cần coi lại phần này khi tác giả dùng chữ Atomic, hiện tạm dịch là thành tố kiểu nguyên tử, nguyên tố, tức thành tố gốc tạo nên nhưng dễ gây khó hiểu cho người đọc Việt Nam**
+
+**_ _Ví dụ không đặt tên kiểu FloatBullet, chữ Float chính là ý nói Atomic_ _**
+
+Thành tố nguyên tử hay nguyên tố đặt tên cho biến là dạng đặt tên theo kiểu dữ liệu, như booleans, integers, floats, and enumerations.
+
+Kiểu Strings và Vectos luôn được xem là dạng nguyên tố nếu theo kiểu làm việc với Blueprints.
+
+> Khi vectors chứa ba giá trị floats, vectors cũng có thể thay đổi cả cụm, tương tự cho rotators.
+
+> _Đừng_ để biến Text là kiểu nguyên tố, chúng có bí mật ẩn chứa các hàm địa phương hóa (như theo ngôn ngữ). Định dạng kiểu nguyên tố của chuỗi chính là chuỗi `String` các ký tự không phải `Text`.
+
+
+Tên biến kiểu thành phần nguyên tố không nên được đặt tên cho biến.
+
+Ví dụ: 
+**Good**
+
+* `Score`
+* `Kills`
+* `Description` 
+
+**Bèo**
+
+* `ScoreFloat`
+* `FloatKills`
+* `DescriptionString`
+
+Ngoại lệ của qui luật này là khi biến giới thiệu một loạt số lượng của cái gì đó để đếm _và_ khi sử dụng tên không có kiểu dữ liệu đi kèm thật không dễ đọc.
+
+Ví dụ: một chức năng tự tạo ra hàng rào cần liên tục tạo ra cây rào là biến đếm X. Lưu X vào `NumPosts` hay `PostsCount` thay vì `Posts` sẽ khó đọc hơn. `Posts` (có "s số nhiều" cũng dễ gây ra việc nhầm là mảng của biến `Post` "không có s, số ít".
+
+<a name="3.2.1.7"></a>
+<a name="bp-vars-naming-complex"></a>
+##### 3.2.1.7 Thêm Kiểu Tên Non-Atomic Cho Biến
+Non-atomic hay biến phức tạp là biến thể hiện dữ liệu như một tập các biến nguyên tố. Structs, Classes, Interfaces, và nguyên tố (primitives) ẩn giấu các hành vi như `Text` và `Name` đều hợp lệ cho luật này. 
+
+> Mảng Array của một tập hợp các biến kiểu atomic là danh sách của các biến, mảng Array không thay đổi tính atomic của kiểu dữ liệu
+
+Kiểu biến này nên chứa thêm kiểu dữ liệu đi kèm để giữ được ý nghĩa của ngữ cảnh.
+
+Nếu một class chứa một instance của một biến phức tạp, lấy ví dụ như `BP_PlayerCharacter` sở hữu `BP_Hat`, nó nên được lưu như kiểu dữ liệu mà không thay đổi lên tên. 
+
+Ví dụ: Dùng `Hat`, `Flag`, và `Ability` **Chứ Không Phải** `MyHat`, `MyFlag`, và `PlayerAbility`.
+
+Nếu một class không có sở hữu giá trị của biến phức tạp, nên dùng danh từ đi kèm cho kiểu biến.
+
+Ví dụ: Nếu `BP_Turret` có khả năng mục tiêu vào `BP_PlayerCharacter`, nên lưu mục tiêu của nó là `TargetPlayer` khi ngữ cảnh được làm rõ là tham chiếu tới biến dữ liệu khác mà nó không sỡ hữu. 
+
+<a name="3.2.1.8"></a>
+<a name="bp-vars-naming-arrays"></a>
+##### 3.2.1.8 Arrays / Mảng 
+
+Arrays theo tên và luật như hướng dẫn ở trên nhưng nên thêm số nhiều.
+
+Ví dụ: Dùng thêm số nhiều `Targets`, `Hats`, và `EnemyPlayers`, **Chứ Không Phải** `TargetList`, `HatArray`, `EnemyPlayerArray`.
+
+
+<a name="3.2.2"></a>
+<a name="bp-vars-editable"></a>
+#### 3.2.2 Các Biến Có Thể Hiệu Chỉnh 
+
+Mọi biến đều an toàn để thay đổi giá trị hay để thay đổi hành vi của một Blueprint cần nên thêm đánh dấu kiểm `Editable`.
+
+Ngược lại, mọi biến không an toàn để thay đổi giá trị hay không muốn expose cho designer thì _Không Nên_ đánh dấu `Editable`, trừ phi vì lý do kỹ thuật thì biến đó nên đánh dấu là `Expose On Spawn`.
+
+Không nên quá cứng nhắc khi đánh dấu kiểm `Editable`.
+
+<a name="3.2.2.1"></a>
+<a name="bp-vars-editable-tooltips"></a>
+##### 3.2.2.1 Tooltips / Chú Giải
+
+Mọi biến đánh dấu kiểm `Editable`, bao gồm các biến đánh dấu có thể thay đổi bao gồm cả biến được đánh dấu `Expose On Spawn`, nên đợc có để chú giải `Tooltip` nhằm giải thích tác dụng giá trị tạo ảnh hưởng lên chức năng của Blueprint.
+
+<a name="3.2.2.2"></a>
+<a name="bp-vars-editable-ranges"></a>
+##### 3.2.2.2 Slider And Value Ranges ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+Mọi biến đánh dấu kiểm `Editable` nên làm kiểu thanh trượt và có khoảng giá trị (clamp) không nên để _tự set_ giá trị.
+
+Ví dụ: một Blueprint tạo ra các cây hàng rao có thể tùy chỉnh biến `PostsCount` và nếu giá trị đầu vào bằng -1 là thật không phù hợp. Dùng range để đánh dấu 0 là tối thiểu.
+
+Nếu biến có thể hiệu chỉnh được dùng ở Construction Script, nên dùng một thanh trượt phù hợp để ai đó không vô tình để vào một biến quá lớn gây crash editor.
+
+Một giá trị có range chỉ cần nếu biên có thể đoán. Trong khi đó một thanh trượt sẽ hạn chế việc nhập giá trị quá lớn.
+
+<a name="3.2.3"></a>
+<a name="bp-vars-categories"></a>
+#### 3.2.3 Categories / Phân Loại 
+
+Nếu một clas có số lượng biến ít thì không cần phân loại. 
+
+Nếu một class có 5++ số lượng biến, tất cả biến thay đổi nên được đưa vào phân loại category phổ biến là `Config`.
+
+Nếu một class có số lượng biến lớn, tất cả các biến hiệu chỉnh được `Editable` nên được phân loại thành nhiều hạng mục nhỏ sử dụng `Config` là gốc. Các loại biến không hiệu chỉnh được nên đặt vào hạng mục giải thích chức năng.
+
+> Bạn có thể phân loại hạng mục nhỏ bằng cách dùng ký tự `|`, ví dụ như `Config | Animations`
+
+Ví dụ: Một class vũ khí có tập biến có thể được phân loại như sau: 
+
+	|-- Config
+	|	|-- Animations
+	|	|-- Effects
+	|	|-- Audio
+	|	|-- Recoil
+	|	|-- Timings
+	|-- Animations
+	|-- State
+	|-- Visuals
+
+<a name="3.2.4"></a>
+<a name="bp-vars-access"></a>
+#### 3.2.4 Variable Access Level / Cấp Truy Cập Biến 
+
+Với C++, biến có tư duy của cấp độ truy cập. 
+- **Public** có nghĩa là code truy cập được biến từ bên ngoài class. 
+- **Protected** nghĩa là chỉ có Class đó và bất cứ thừa kế Child nào đều có thể truy cập biến.
+- **Private** nghĩa chỉ bản thân class đó truy cập biến. 
+
+Blueprint không có kiểu định hình tư duy **protected** hiện tại.
+
+Xem như biến đánh dấu kiểm `Editable` là dạng biến **Public**, và kiểu biến không hiệu chỉnh được là biến **protected**.
+
+<a name="3.2.4.1"></a>
+<a name="bp-vars-access-private"></a>
+##### 3.2.4.1 Biến Dạng Private 
+
+Ngoại trừ khi biến chỉ truy cập được bên trong class nếu đã được định nghĩa và không bao giờ là class con, không nên đánh dấu biến là kiểu **private**. Cho đến khi biến có thể đánh dấu `protected`, chỉ để hẳn private khi nào biết chính xác muốn giới hạn class con dùng.
+
+<a name="3.2.5"></a>
+<a name="bp-vars-advanced"></a>
+#### 3.2.5 Advanced Display / Hiển Thị Thêm 
+
+Nếu một biến có thể được hiệu chỉnh nhưng ít khi dùng, hãy đánh dấu là `Advanced Display`. Nó giúp biến sẽ ẩn đi và chỉ hiển thị khi nào click vào phần advanced display (mũi tên).
+
+Để tìm thấy phần tùy chọn `Advanced Display`, nó được liệt kê trong phần option của biến, click mũi tên mở rộng.
+
+<a name="3.2.6"></a>
+<a name="bp-vars-transient"></a>
+#### 3.2.6 Transient Variables / Biến Tạm
+
+Các loại biến tạm không cần giá trị được lưu hay load lên hay được khởi tạo giá trị zero hay null. Điều này phù hợp việc tạo tham chiếu tới đối tượng và actor khác mà giá trị là không biết tại thời điểm chạy chương trình. Điều này ngăn editor lưu một tham chiếu, giải phóng nhanh lưu và load của class Blueprint.
+
+Vì vậy nên biến tạm nên luôn được khởi tạo là zero hay null. Nếu không sẽ khó mà debug.
+
+<a name="3.2.7"></a>
+<a name="bp-vars-config"></a>
+#### 3.2.8 Config Variables 
+
+Không dùng đánh dấu kiểm `Config Variable`. Điều này gây khó dễ cho designer kiểm soát chức năng Blueprint. Chỉ nên dùng khi viết code C++ cho các giá trị biến hiếm khi dùng tới. 
+
+<a name="3.3"></a>
+<a name="bp-functions"></a>
+### 3.3 Functions, Events, và Event Dispatchers / Hàm Sự Kiện và Các Loại Sự Kiện Dispatcher
+
+Phần này mô tả cách làm việc với hàm, sự kiện và các kiểu sự kiện dispatcher. Bất cứ gì ứng dụng cho hàm đều phù hợp với các loại còn lại. 
+
+<a name="3.3.1"></a>
+<a name="bp-funcs-naming"></a>
+#### 3.3.1 Function Naming / Định Danh Hàm
+
+Cách đặt tên hàm functions, events, và event dispatchers rất quan trọng. Dựa trên chỉ phần tên có thể tự hiểu được chức năng. Lấy ví dụ:
+
+* Có phải là thuần một hàm ? 
+* Có phải nó đang thông tin thay đổi của trạng thái (State) ? 
+* Có phải là handler?
+* Có phải là [RPC (Remote Procedure Calls)](https://docs.unrealengine.com/en-US/Gameplay/Networking/Actors/RPCs/index.html) ? 
+* Chức năng ?
+
+Các kiểu câu hỏi trên hoàn toàn hiểu được qua việc đặt tên phù hợp. 
+
+<a name="3.3.1.1"></a>
+<a name="bp-funcs-naming-verbs"></a>
+#### 3.3.1.1 Mọi Hàm Đều Nên Đặt Tên Là Động Từ 
+
+Tất cả hàm và sự kiện đều thực thi một hành vi nào đó, cho dù là lấy thông tin, tính toán dữ liệu, hay làm cho cái gì nổ. Bởi vậy mọi hàm đều bắt đầu là một động từ. Có thể để tên là một câu thể hiện làm điều gì đó nếu được và có nghĩa trong ngữ cảnh.
+
+Với loại hàm `OnRep`, event handlers, và event dispatchers là ngoại lệ theo qui luật này.
+
+Ví dụ Tốt: 
+
+* `Fire` - đây là một ví dụ tốt nếu đó là nhân vật hay class vũ khí (có nghĩa là bắn, khai hỏa). Nó sẽ tồi nếu là cái thùng, cỏ hay một class nào đó tối nghĩa hơn. 
+* `Jump` - sẽ phù hợp nếu là class nhân vật, nếu không thì sẽ rất tối nghĩa.
+* `Explode`
+* `ReceiveMessage`
+* `SortPlayerArray`
+* `GetArmOffset`
+* `GetCoordinates`
+* `UpdateTransforms`
+* `EnableBigHeadMode`
+* `IsEnemy` - cái này có động từ tobe "Is" ["Is" là một động từ](http://writingexplained.org/is-is-a-verb)
+
+Ví dụ tồi:
+
+* `Dead` - Là Chết ? Sẽ Chết ?
+* `Rock`
+* `ProcessData` - Tối nghĩa, không có ý nghĩa theo ngữ cảnh
+* `PlayerState` - Đây là danh từ và tối nghĩa theo ngữ cảnh
+* `Color` - Đây là động từ không có ngữ cảnh và tối nghĩa nếu là danh từ 
+
+<a name="3.3.1.2"></a>
+<a name="bp-funcs-naming-onrep"></a>
+#### 3.3.1.2 Thuộc Tính Dấu Kiểm RepNotify Cho Phần Hàm Luôn Luôn `OnRep_Variable` 
+
+Mọi hàm để phản ảnh kiểu lập lại (dùng theo chức năng network) nên ở dạng `OnRep_Variab`. Đây là bắt buột khi biên tập Blueprint. Nếu như đang viết C++ một dạng hàm `OnRep` cũng nên theo cách viết này khi expose cho Blueprint.
+
+<a name="3.3.1.3"></a>
+<a name="bp-funcs-naming-bool"></a>
+#### 3.3.1.3 Kiểu Hàm Thông Tinh Trả Về Giá Trị Boolean Nên Là Loại Đặt Câu Hỏi 
+
+Khi viết một hàm không thay đổi trạng thái (state) hoặc hiệu chỉnh một đối tượng hay đơn thuần chỉ lấy thông tin, trạng thái hoặc tính toán giá trị yes/no, nó nên là đặt tên kiểu một câu hỏi. Cái này cũng theo luật [đặt tên là động từ](#bp-funcs-naming-verbs)
+
+Điều này cực kỳ quan trọng nếu một câu hỏi không được đưa ra, nó có thể cho là hàm đó đang thực thi một chức năng và giá trị trả về là kết quả thực thi thành công.
+
+Ví dụ tốt:
+
+* `IsDead`
+* `IsOnFire`
+* `IsAlive`
+* `IsSpeaking`
+* `IsHavingAnExistentialCrisis`
+* `IsVisible`
+* `HasWeapon` - ["Has" là một động từ.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+* `WasCharging` - ["Was" là động từ quá khứ của "be".](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html) Sử dụng "was" khi tham chiếu tới 'previous frame' hoặc 'previous state'.
+* `CanReload` - ["Can" là một động từ.](http://grammar.yourdictionary.com/parts-of-speech/verbs/Helping-Verbs.html)
+
+Ví dụ bèo:
+
+* `Fire` - Đang bắn ? Sẽ bắn ? Thực thi bắn?
+* `OnFire` - Có thể bị hiểu nhầm với sự kiện event dispatcher cho việc bắn.
+* `Dead` - Chết chưa ? sẽ chết ? 
+* `Visibility` - Có hiển thị không ? để hiển thị ? một kiểu tên đặt ra với điều kiện khá bay bổng.
+
