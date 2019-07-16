@@ -941,7 +941,7 @@ Mọi biến đánh dấu kiểm `Editable`, bao gồm các biến đánh dấu 
 
 <a name="3.2.2.2"></a>
 <a name="bp-vars-editable-ranges"></a>
-##### 3.2.2.2 Slider And Value Ranges ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+##### 3.2.2.2 Slider And Value Ranges 
 
 Mọi biến đánh dấu kiểm `Editable` nên làm kiểu thanh trượt và có khoảng giá trị (clamp) không nên để _tự set_ giá trị.
 
@@ -1222,7 +1222,7 @@ Luôn sắp xếp theo dạng dây, không phải dạng node. Không thể đi�
 Ví dụ tồi: phần top của node cố gắng sắp xếp align theo đỉnh node gây ra dây luồng exec bị dùng dằng (node ADD Array so với Branch) 
 ![Tồi Tệ](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-align-wires-bad.png "Dây Rối Rắm")
 
-Hoặc hiện thân của kiểu khủng khiếp nhùng nhằng hơn
+Hoặc hiện thân của kiểu khủng khiếp nhùng nhằng hơn - Lùng Bùng Spaghetti
 ![Lùng Bùng Spaghetti](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-graphs-wire-spaghetti.jpg "Spaghetti")
 
 Kiểu Ví Dụ Chấp Nhận Được: một vài node cho dù làm kiểu gì cũng không thể sắp xếp align được. Trong trường hợp này giảm thiệu sự rối rắm của dây tối thiểu là ổn.
@@ -1259,3 +1259,171 @@ Nếu hàm hay sự kiện luôn nghĩ rằng việc cast luôn thành công, th
 Mọi node trong biểu đồ Blueprint phải có mục đích. Không nên để các node không mục đích, không thực thi và lũng lẳng.
 
 **[⬆ Trở Về Mục Lục](#table-of-contents)**
+
+<a name="4"></a>
+<a name="Static Meshes"></a>
+<a name="s"></a>
+## 4. Static Meshes
+
+Phần này tập trung vào tài nguyên Static Mesh
+
+### Hạng Mục
+
+> 4.1 [UVs](#s-uvs)
+
+> 4.2 [LODs](#s-lods)
+
+> 4.3 [Modular Socketless Snapping](#s-modular-snapping)
+
+> 4.4 [Must Have Collision / Phải Có Kiểm Va Chạm](#s-collision)
+
+> 4.5 [Correct Scale / Chuẩn Xác Về Tỉ Lệ](#s-scaled)
+
+<a name="4.1"></a>
+<a name="s-uvs"></a>
+### 4.1 Static Mesh UVs
+
+Nếu UV báo lỗi plugin Linter có thể ghi nhận được vào file `.log`. Tuy nhiên hiện tại plugin này không còn được cung cấp nữa.
+
+<a name="4.1.1"></a>
+<a name="s-uvs-no-missing"></a>
+#### 4.1.1 Tất Cả Mesh Phải Có UV
+
+Rất đơn giản, UV phải có trên các Mesh.
+
+<a name="4.1.2"></a>
+<a name="s-uvs-no-overlapping"></a>
+#### 4.1.2 Lỗi Thường Gặp, Tất Cả Mesh Đều Phải Đã Fix Lỗi Overlapping UVs Lightmaps 
+
+Rất dễ hiểu. Tất cả mesh dùng như thế nào không biết nhưng phải có UV ổn không bị chồng lắp.
+
+Việc này có thể đơn giản làm trên UE 4.22.3:
+Có thể edit hàng loạt Mesh bằng chọn hàng loạt Mesh
+![chọn hàng loạt Mesh qua Property Matrix](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/static-mesh-UV-bulk-selection.jpg "Property Matrix")
+
+Sau đó chọn cả bảng, search Light Map, nhập 1 vào trường giá trị **Light Map Coordinate Index** (Unreal Engine nhận chỉ kênh UV thứ 2), sau đó Rebuild Lightmap
+
+![Search Light Map Hàng Loạt](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/static-mesh-UV-Lightmap-Coordinate-Index.JPG "Light Map Coordinate Index")
+
+<a name="4.2"></a>
+<a name="s-lods"></a>
+### 4.2 LODs Phải Được Thiết Lập Đúng Bài
+
+Đây là chủ đề kiểm tra trên từng mỗi dự án một cách cơ bản, qui định được đặt ra cho mesh được thấy ở những khoảng cách khác nhau phải ứng với LODs phù hợp.
+
+<a name="4.3"></a>
+<a name="s-modular-snapping"></a>
+### 4.3 Kiểu Modular Socketless Assets Phải Dính Vào Grid Hoàn Toàn
+
+Đây là chủ để kiểm tra cơ bản trên từng mỗi asset, mỗi asset kiểu modular socketless phải đảm bảo dính trên lưới theo thiết lập dự án.
+
+Tùy theo dự án mà việc snap sẽ được cài đặt dựa theo lũy thừa của 2 hay dựa trên dạng grid 10. Nếu muốn đưa tài nguyên lên Epic marketplace phải đảm bảo dùng dạng grid 10 hay lớn hơn.
+
+<a name="4.4"></a>
+<a name="s-collision"></a>
+### 4.4 Tất Cả Meshes Phải Có Collision
+
+Không cần biết collision trên mesh sẽ dùng thế nào trong một màn level, tất cả mesh đều phải có collision. Điều này giúp trơn tru Unreal Engine khi kiểm tra biên cạnh, va chạm, ánh sáng. Collision cũng phải đong đo để vừa vặn với tài nguyên asset.
+
+<a name="4.5"></a>
+<a name="s-scaled"></a>
+### 4.5 Tất Cả Meshes Phải Được Chỉnh Tỉ Lệ Đàng Hoàng 
+
+Đây là kiểu kiểm tra cơ bản, mọi tài nguyên phải hợp lệ về tỉ lệ dùng trong dự án. Designer thiết kế màn chơi hay thiết kế Blueprint không nên chỉnh tỉ lệ của mesh chỉ để nhìn phù hợp trong editor. 
+
+> Scaling meshes in the engine should be treated as a scale override, not a scale correction.
+
+**[⬆ Trở Về Mục Lục](#table-of-contents)**
+
+
+<a name="5"></a>
+<a name="Particle Systems"></a>
+<a name="ps"></a>
+## 5. Particle Systems
+
+Mục này tập trung vào hệ thống hạt dạng tài nguyên Particle System.
+
+### Hạng Mục
+
+> 5.1 [Định Danh Emitter](#ps-naming)
+
+<a name="5.1"></a>
+<a name="ps-emitter-naming"></a>
+### 5.1 Emitter Naming 
+
+Mọi định danh emitters trong Particle System phải được định danh phù hợp, dễ hiểu và không được chỉ để dưới tên mặc định.
+
+**[⬆ Trở Về Mục Lục](#table-of-contents)**
+
+<a name="6"></a>
+<a name="Levels"></a>
+<a name="levels"></a>
+## 6. Levels / Maps / Màn Chơi 
+
+[Xem chú thích giải nghĩa về màn chơi](#terms-level-map) cũng như hiểu là "levels" hay "maps".
+
+Mục này tập trung vào tài nguyên level.
+
+### Hạng Mục
+
+> 6.1 [No Errors Or Warnings / Không Báo Không Lỗi](#levels-no-errors-or-warnings)
+
+> 6.2 [Lighting Should Be Built / Ánh Sáng Đã Được Build](#levels-lighting-should-be-built)
+
+> 6.3 [No Player Visible Z Fighting](#evels-no-visible-z-fighting)
+
+> 6.4 [Marketplace Specific Rules / Theo Qui Luật Của Marketplace](#evels-levels-mp-rules)
+
+<a name="6.1"></a>
+<a name="levels-no-errors-or-warnings"></a>
+### 6.1 No Errors Or Warnings / Không Báo Không Lỗi
+
+Như nghĩa của nó, không báo không lỗi trong mọi level. Nếu một level được load với nhiều biển báo và lỗi, phải được chỉnh sửa ngay để không đè chồng nhiều rũi ro.
+
+Có thể dùng console command lệnh "map check" để kiểm tra level trong editor. (kích hoạt console bằng tilde khi nhấn Shift + `~`).
+
+<a name="6.2"></a>
+<a name="levels-lighting-should-be-built"></a>
+### 6.2 Lighting Should Be Built / Ánh Sáng Đã Được Build
+
+Trong quá trình phát triển level thì thông thường ánh sáng không cần build ngay. Tuy nhiên chuyển qua các giai đoạn kiểm tra sản phẩm, phát hành nội bộ, shipping thì phải đảm bảo rằng lighting luôn đã được build.
+
+<a name="6.3"></a>
+<a name="levels-no-visible-z-fighting"></a>
+### 6.3 No Player Visible Z Fighting 
+
+Một màn chơi Levels không nên tồn tại trong mọi khu vực có tài nguyên, [tìm hiểu thêm về z-fighting / tranh chấp của 2 đối tượng trên trục Z, kiểu như chồng mặt](https://en.wikipedia.org/wiki/Z-fighting)
+
+<a name="6.4"></a>
+<a name="levels-mp-rules"></a>
+### 6.4 Marketplace Specific Rules / Theo Qui Luật Của Marketplace 
+
+Nếu đã đem lên Epic Marketplace thì phải theo luật chơi của Epic. 
+
+<a name="6.4.1"></a>
+<a name="levels-mp-rules-overview"></a>
+### 6.4.1 Overview Level (Mô Tả Khái Quát Level)
+
+
+Dự án của bạn phải có tài nguyên được hiển thị dạng trình diễn tổng quát qua một map chứa tên "Overview".
+[Tham khảo Epic Marketplace Guide Line](https://www.unrealengine.com/en-US/marketplace-guidelines)
+
+Đây là cách marketplace hướng dẫn cách làm [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
+
+Lấy ví dụ tên: `InteractionComponent_Overview`.
+
+<a name="6.4.2"></a>
+<a name="levels-mp-rules-demo"></a>
+### 6.4.2 Demo Level ![#](https://img.shields.io/badge/lint-unsupported-red.svg)
+
+Nếu như dự án của bạn có tài nguyên cần trình diễn hoặc dạng như để hướng dẫn tutorial, cần phải có một map mang tên "Demo". Màn chơi level này cần phải có tài liệu bên trong và minh họa làm sau sử dụng dự án. Xem thêm về dự án Content Examples của Epic đã làm để thấy minh họa tốt nhất cho điều này. 
+
+Nếu dự án của bạn là kiểu tài nguyên đầu vào như hệ thống (mechanic) gameplay hoặc dạng nào đ1o về hệ thống cũng như gói tài nguyên đồ họa, nó cũng giống như map "Overview".
+
+Lấy ví dụ: 
+* `InteractionComponent_Overview_Demo`
+* `ExplosionKit_Demo`.
+
+**[⬆ Trở Về Mục Lục](#table-of-contents)**
+
+
