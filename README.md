@@ -1272,13 +1272,13 @@ Phần này tập trung vào tài nguyên Static Mesh
 ### Hạng Mục
 
 > 4.1 [UVs](#s-uvs)
-
+>
 > 4.2 [LODs](#s-lods)
-
+>
 > 4.3 [Modular Socketless Snapping](#s-modular-snapping)
-
+>
 > 4.4 [Must Have Collision / Phải Có Kiểm Va Chạm](#s-collision)
-
+>
 > 4.5 [Correct Scale / Chuẩn Xác Về Tỉ Lệ](#s-scaled)
 
 <a name="4.1"></a>
