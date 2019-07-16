@@ -1,7 +1,9 @@
 # Unreal Engine 4 Style Guide Tiếng Việt
 Vietnamese Translation on Allar UE4 Style Guide
 
-Bảng dịch tiếng Việt tài liệu tiêu chuẩn (style guide) làm việc cả code và blueprint Style Guide với Unreal Engine 4 dựa trên nguyên bản của [Allar](https://github.com/Allar/ue4-style-guide).
+16 July 2019 *Tài liệu này vẫn còn đang tiếp tục chỉnh sửa lỗi typo hoặc phương dịch* 
+
+Bảng biên phiên dịch tiếng Việt tài liệu tiêu chuẩn (style guide) làm việc cả code và blueprint Style Guide với Unreal Engine 4 dựa trên nguyên bản của [Allar](https://github.com/Allar/ue4-style-guide).
 
 Bảng dịch này có đóng góp thêm của người dịch [@Vũ Phạm](https://twitter.com/phamduongvu), không ghi chú trong tiêu chuẩn vị trí đóng góp. 
 
@@ -1427,3 +1429,80 @@ Lấy ví dụ:
 **[⬆ Trở Về Mục Lục](#table-of-contents)**
 
 
+<a name="7"></a>
+<a name="textures"></a>
+## 7. Textures 
+
+Phần này tập trung nói về tài nguyên asset texture
+
+### Các Hạng Mục
+
+> 7.1 [Dimensions Are Powers of 2 / Kích Thước Khổ Là Lũy Thừa 2](#textures-dimension)
+
+> 7.2 [Texture Density Should Be Uniform / Mật Độ Của Texture Phải Được Làm Tương Đồng ](#textures-dimension)
+
+> 7.3 [Textures Should Be No Bigger than 8192 / Texture Không Lớn Hơn 8K](#textures-max-size)
+
+> 7.4 [Correct Texture Groups / Chuẩn Hóa Texture Groups](#textures-textures-group)
+
+<a name="7.1"></a>
+<a name="textures-dimensions"></a>
+### 7.1 Dimensions Are Powers of 2 / Kích Thước Khổ Là Lũy Thừa 2 
+
+Đảm bảo mọi texture, ngoại trừ texture của giao diện UI, phải có khổ kích thước là kết quả nhân với lũy thừa 2. Texture không cần phải hình vuông.
+
+Lấy ví dụ
+* `128x512`
+* `1024x1024`
+* `2048x1024`
+* `1024x2048`
+* `1x512`.
+
+<a name="7.2"></a>
+<a name="textures-density"></a>
+### 7.2 Texture Density Should Be Uniform / Mật Độ Của Texture Phải Được Làm Tương Đồng
+
+Tất cả texture phải có kích thước phù hợp phải tiêu chuẩn dùng. Mọi mật độ phân bổ texture là tùy thuộc vào dự án, tuy nhiên tất cả texture cần phải có density đồng nhất.
+
+Lấy ví dụ là texture density = 8 pixel trên mỗi 1 unit, như vậy texture đó để ốp lên một khối vuôn 100x100 unit phải là 1024x1024, kết quả gần nhất với tích số lũy thừa 2.
+
+<a name="7.3"></a>
+<a name="textures-max-size"></a>
+### 7.3 Textures Should Be No Bigger than 8192 / Texture Không Lớn Hơn 8K
+
+Không texture nào được lớn hơn 8192 về kích thước, ngoài trừ khi có mục đích cụ thể riêng biệt ngoại lệ. Sử dụng texture quá lớn chỉ là lãng phí tài nguyên.
+
+<a name="7.4"></a>
+<a name="textures-group"></a>
+### 7.4 Textures Should Be Grouped Correctly / Chuẩn Hóa Texture Groups (phân loại)
+
+Bất cứ texture nào cũng có thuộc tính Texture Group được sử dụng cho nhóm LODs, tính năng này phải được thiết lập đúng đắn dựa trên mục đích sử dụng. 
+
+Lấy ví dụ, mọi texture thể hiện UI phải nằm trong nhóm Texture group là UI.
+
+**[⬆ Trở Về Mục Lục](#table-of-contents)**
+
+
+## Contributors / Thành Viên Đóng Góp Bản Gốc Allar
+
+* [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
+* [CosmoMyzrailGorynych](https://github.com/CosmoMyzrailGorynych)
+* [billymcguffin](https://github.com/billymcguffin)
+* [akenatsu](https://github.com/akenatsu)
+
+*Phiên bản hiện tại biên dịch bởi [@Vũ Phạm](https://twitter.com/phamduongvu) đã có hiệu chỉnh, thêm bớt và thay đổi phù hợp với điều kiện thiết kế dự án Unreal Engine 4 trong sản xuất công ty làm phim quảng cáo và diễn họa kiến trúc [@Rainstorm Film](https://www.rainstormfilm.com)*
+
+## License Của Bản Gốc
+
+Copyright (c) 2016 Gamemakin LLC
+
+See [LICENSE](/LICENSE)
+
+**[⬆ Trở Về Mục Lục](#table-of-contents)**
+
+
+## Amendments 
+
+Theo Allar (tức team Gamemakin LLC) thì họ rất ủng hộ hộ việc phân nhánh tài liệu này thành style guide riêng của nội bộ dự án. Phía bên dưới này là phần để thêm vào các tiêu chuẩn, qui luật riêng của nhóm dự án. Điều này cũng giúp liên tục cập nhật được style guide riêng mà không phải khó khăn với việc làm thao tác merge các tranh chấp trong tài liệu.
+
+# };
