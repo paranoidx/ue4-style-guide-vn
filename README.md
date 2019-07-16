@@ -16,6 +16,14 @@ Hiểu về cách định dạng văn bản của file README.MD theo GitHub nê
 ## Unreal Engine 4 Linter Plugin
 Allar có thiết kế một plugin giúp tự động kiểm soát các tài nguyên (asset) có trong project Unreal Engine 4 theo style guide, tuy nhiên hiện nay đã không còn hoạt động và không còn cập nhật với các bảng Unreal Engine mới, xem thêm tại market [the Unreal Engine marketplace](https://www.unrealengine.com/marketplace/linter).
 
+*16 July, 2019. Hiện tại Linter plugin này không còn được cung cấp nữa.*
+![Sản phẩm Linter đã dừng bán](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/linter-not-for-sale.JPG "Linter Not For Sale")
+
+*Thông tin gần nhất Allar cho biết Epic đang giao dịch mua lại plugin này để nhúng hẳn vào Editor của Unreal Engine. Không biết khi nào sẽ được dùng sản phẩm này là một phần nội bộ của Unreal Engine Editor*
+
+>"Epic just announced that they bought Linter and are working with me to get a form of it built into the engine so that marketplace sellers can check their assets before submitting."
+>**Allar 02/11/2018**
+
 ## Thảo Luận Thêm Về Style Guide Này
 
 Gamemakin LLC có một kênh Discord tại http://discord.gamemak.in với kênh #linter nếu như các bạn muốn thảo luận về mọi thứ liên quan style guide hay plugin Linter. 
@@ -951,7 +959,7 @@ Ví dụ: một Blueprint tạo ra các cây hàng rao có thể tùy chỉnh bi
 
 Nếu biến có thể hiệu chỉnh được dùng ở Construction Script, nên dùng một thanh trượt phù hợp để ai đó không vô tình để vào một biến quá lớn gây crash editor.
 
-![Màn Hình Đặt Giá Trị Thanh Trượt Và Khoảng Giá Trị](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-slider-range.JPG)
+![Màn Hình Đặt Giá Trị Thanh Trượt Và Khoảng Giá Trị](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/bp-slider-range.JPG "Màn Hình Detail Của Biến")
 
 Một giá trị có range chỉ cần nếu biên có thể đoán. Trong khi đó một thanh trượt sẽ hạn chế việc nhập giá trị quá lớn.
 
@@ -1285,7 +1293,10 @@ Phần này tập trung vào tài nguyên Static Mesh
 <a name="s-uvs"></a>
 ### 4.1 Static Mesh UVs
 
-Nếu UV báo lỗi plugin Linter có thể ghi nhận được vào file `.log`. Tuy nhiên hiện tại plugin này không còn được cung cấp nữa.
+Nếu UV báo lỗi plugin Linter có thể ghi nhận được vào file `.log`. 
+
+*16 July, 2019. Hiện tại plugin này không còn được cung cấp nữa.*
+![Sản phẩm Linter đã dừng bán](https://raw.githubusercontent.com/paranoidx/ue4-style-guide-vn/master/img/linter-not-for-sale.JPG "Linter Not For Sale")
 
 <a name="4.1.1"></a>
 <a name="s-uvs-no-missing"></a>
